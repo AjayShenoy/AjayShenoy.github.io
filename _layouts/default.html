@@ -7,37 +7,31 @@
     <link rel="stylesheet" href="{{ '/assets/css/styles.css' | relative_url }}">
     {% feed_meta %}
     {% seo %}
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            box-sizing: border-box;
+        }
+        /* Add more styles here as needed */
+    </style>
 </head>
 <body>
     <div class="container">
-        <header>
-            <h1><a href="{{ '/' | relative_url }}">{{ site.title }}</a></h1>
-            <nav>
-                <a href="{{ '/' | relative_url }}" {% if page.url == "/" %}class="active"{% endif %}>Home</a>
-                <a href="{{ '/archive' | relative_url }}" {% if page.url == "/archive/" %}class="active"{% endif %}>Archive</a>
-                <a href="{{ '/about' | relative_url }}" {% if page.url == "/about/" %}class="active"{% endif %}>About</a>
-            </nav>
-        </header>
-
-        <main>
-            {{ content }}
-        </main>
-
-        <footer>
-            <p>&copy; {{ site.time | date: '%Y' }} {{ site.title }}. All rights reserved.</p>
-        </footer>
+        <!-- Rest of your HTML content -->
     </div>
-
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>
-    MathJax = {
-      tex: {
-        inlineMath: [['$', '$'], ['\\(', '\\)']],
-        displayMath: [['$$', '$$'], ['\\[', '\\]']],
-        processEscapes: true
-      }
-    };
-    </script>
+    <!-- MathJax scripts -->
 </body>
 </html>
