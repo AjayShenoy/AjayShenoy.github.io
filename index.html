@@ -1,36 +1,17 @@
 ---
 layout: default
 ---
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ site.title }}</title>
-    <link rel="stylesheet" href="{{ '/assets/css/styles.css' | relative_url }}">
-</head>
-<body>
-    <header>
-        <h1>{{ site.title }}</h1>
-    </header>
-    <nav>
-        <a href="{{ '/' | relative_url }}" class="active">Posts</a>
-        <a href="#">Archive</a>
-    </nav>
-    <main>
-        <section class="welcome">
-            <h2>👋 Welcome to {{ site.title }}</h2>
-            <p>Hi, this is Ajay</p>
-        </section>
-        <section class="posts">
-            <ul>
-                {% for post in site.posts %}
-                <li>
-                    <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-                </li>
-                {% endfor %}
-            </ul>
-        </section>
-    </main>
-</body>
-</html>
+
+<section class="welcome">
+    <h2>👋 Welcome to {{ site.title }}</h2>
+    <p>Hi, this is Ajay</p>
+</section>
+
+<h2>Posts</h2>
+<ul class="posts">
+    {% for post in site.posts %}
+    <li>
+        <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+    </li>
+    {% endfor %}
+</ul>
