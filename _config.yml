@@ -1,14 +1,13 @@
 title: AI Blog
-description: >
-  Hi, this is Ajay
-baseurl: "" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
+description: Exploring the world of Artificial Intelligence
+baseurl: "" 
+url: "" 
 
 # Build settings
 markdown: kramdown
-theme: minima
 plugins:
   - jekyll-feed
+  - jekyll-seo-tag
 
 # Exclude from processing.
 exclude:
@@ -19,3 +18,6 @@ exclude:
   - vendor/cache/
   - vendor/gems/
   - vendor/ruby/
+
+# Permalink structure
+permalink: /:year/:month/:day/:title/
