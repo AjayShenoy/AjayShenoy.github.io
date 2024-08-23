@@ -3,15 +3,15 @@ layout: default
 ---
 
 <section class="welcome">
-    <h2>👋 Welcome to {{ site.title }}</h2>
-    <p>Hi, this is Ajay</p>
+  <h2>👋 Welcome to {{ site.title }}</h2>
+  <p>Hi, this is Ajay</p>
 </section>
 
 <h2>Posts</h2>
 <ul class="posts">
-    {% for post in site.posts %}
+  {% for post in site.posts %}
     <li>
-        <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+      <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
     </li>
-    {% endfor %}
+  {% endfor %}
 </ul>
