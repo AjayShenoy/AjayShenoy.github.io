@@ -12,34 +12,24 @@ layout: default
 <body>
     <header>
         <h1>{{ site.title }}</h1>
-        <nav>
-            <a href="{{ '/' | relative_url }}" class="active">Posts</a>
-            <a href="#">Archive</a>
-            <!-- <a href="#">Search</a>
-            <a href="#">Tags</a>
-            <a href="#">FAQ</a>
-            <a href="#">emojisearch.app</a> -->
-        </nav>
     </header>
+    <nav>
+        <a href="{{ '/' | relative_url }}" class="active">Posts</a>
+        <a href="#">Archive</a>
+    </nav>
     <main>
         <section class="welcome">
             <h2>👋 Welcome to {{ site.title }}</h2>
-            <p>{{ site.description }}</p>
-            <div class="social-icons">
-                <a href="#" aria-label="RSS feed"><svg><!-- RSS icon --></svg></a>
-                <a href="#" aria-label="Website link"><svg><!-- Link icon --></svg></a>
-                <a href="#" aria-label="GitHub profile"><svg><!-- GitHub icon --></svg></a>
-                <a href="#" aria-label="Twitter profile"><svg><!-- Twitter icon --></svg></a>
-            </div>
+            <p>Hi, this is Ajay</p>
         </section>
         <section class="posts">
-            {% for post in site.posts %}
-            <article class="post">
-                <h3>{{ post.title }}</h3>
-                <p>{{ post.excerpt }}</p>
-                <p class="post-meta">Date: {{ post.date | date: "%B %d, %Y" }} | Estimated Reading Time: {{ post.estimated_reading_time }} min | Author: {{ post.author }}</p>
-            </article>
-            {% endfor %}
+            <ul>
+                {% for post in site.posts %}
+                <li>
+                    <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+                </li>
+                {% endfor %}
+            </ul>
         </section>
     </main>
 </body>
