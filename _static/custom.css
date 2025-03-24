@@ -1,0 +1,7 @@
+:root {
+    /* Set the zoom level you want (1.0 = 100%) */
+    zoom: 1.0;
+    -moz-transform: scale(1.0);
+    -webkit-transform: scale(1.0);
+    transform: scale(1.0);
+  }
