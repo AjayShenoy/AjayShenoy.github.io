@@ -1,0 +1,760 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Setup &#8212; GenAI Course</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=a58b2861" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'setup';</script>
+    <script src="_static/custom.js?v=39abb6b3"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Course Outline" href="genai_intro.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="toc.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">GenAI Course</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="toc.html">
+                    Table of contents
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">GenAI Course</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="genai_intro.html">Course Outline</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Setup</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/setup.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Setup</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#google-colab">Google Colab</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#access-colab-and-install-packages">Access Colab and install packages</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-groq-api-key">Setup Groq API key</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#build-your-first-chatbot">Build your first chatbot</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#local">Local</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-packages">Install packages</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Setup Groq API key</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#our-directory-so-far">Our directory so far</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Build your first chatbot</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="setup">
+<h1>Setup<a class="headerlink" href="#setup" title="Link to this heading">#</a></h1>
+<p>If you are new to Python development, I would suggest setup on Google Colab. If you are an experienced Python developer, you can set up on Local.</p>
+<section id="google-colab">
+<h2>Google Colab<a class="headerlink" href="#google-colab" title="Link to this heading">#</a></h2>
+<section id="access-colab-and-install-packages">
+<h3>Access Colab and install packages<a class="headerlink" href="#access-colab-and-install-packages" title="Link to this heading">#</a></h3>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-0">
+Step 1</label><div class="sd-tab-content docutils">
+<p>Visit <a href="https://colab.research.google.com" target="_blank">Google Colab</a> and login with your email id.</p>
+</div>
+<input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-1">
+Step 2</label><div class="sd-tab-content docutils">
+<p>Click on <code class="docutils literal notranslate"><span class="pre">File</span></code> and then <code class="docutils literal notranslate"><span class="pre">New</span> <span class="pre">notebook</span> <span class="pre">in</span> <span class="pre">Drive</span></code></p>
+<p><img alt="New Notebook" src="_images/colab_01.png" /></p>
+</div>
+<input id="sd-tab-item-2" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-2">
+Step 3</label><div class="sd-tab-content docutils">
+<p>In the first code cell of your notebook, type the following command and execute it with CTRL + ENTER (Notice the “!” at the beginning, which is also to be copied)</p>
+<p><code class="docutils literal notranslate"><span class="pre">!pip</span> <span class="pre">install</span> <span class="pre">groq</span> <span class="pre">python-dotenv</span> <span class="pre">gradio</span></code></p>
+<p><img alt="Install Packages" src="_images/colab_02.png" /></p>
+</div>
+</div>
+</section>
+<section id="setup-groq-api-key">
+<h3>Setup Groq API key<a class="headerlink" href="#setup-groq-api-key" title="Link to this heading">#</a></h3>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-3" name="sd-tab-set-1" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-3">
+Step 1</label><div class="sd-tab-content docutils">
+<p>Visit the <a href="https://groq.com/" target="_blank">Groq Website</a></p>
+</div>
+<input id="sd-tab-item-4" name="sd-tab-set-1" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-4">
+Step 2</label><div class="sd-tab-content docutils">
+<p>Go to <code class="docutils literal notranslate"><span class="pre">Developers</span></code> and then click on <code class="docutils literal notranslate"><span class="pre">Free</span> <span class="pre">API</span> <span class="pre">Key</span></code></p>
+<p><img alt="Install Packages" src="_images/groq_01.png" /></p>
+</div>
+<input id="sd-tab-item-5" name="sd-tab-set-1" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-5">
+Step 3</label><div class="sd-tab-content docutils">
+<p>Login with your email id</p>
+<p><img alt="Install Packages" src="_images/groq_02.png" /></p>
+</div>
+<input id="sd-tab-item-6" name="sd-tab-set-1" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-6">
+Step 4</label><div class="sd-tab-content docutils">
+<p>Click on <code class="docutils literal notranslate"><span class="pre">Create</span> <span class="pre">API</span> <span class="pre">Key</span></code>
+<img alt="Install Packages" src="_images/groq_03.png" /></p>
+</div>
+<input id="sd-tab-item-7" name="sd-tab-set-1" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-7">
+Step 5</label><div class="sd-tab-content docutils">
+<p>Enter a name. For example <code class="docutils literal notranslate"><span class="pre">GenAICourse</span></code>.
+Copy the API key. Never share this with anyone.</p>
+<p><img alt="Install Packages" src="_images/groq_04.png" /></p>
+</div>
+<input id="sd-tab-item-8" name="sd-tab-set-1" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-8">
+Step 6</label><div class="sd-tab-content docutils">
+<p>In your Colab notebook, click on the key symbol, and then on <code class="docutils literal notranslate"><span class="pre">Add</span> <span class="pre">new</span> <span class="pre">secret</span></code>
+<img alt="Install Packages" src="_images/groq_06.png" /></p>
+</div>
+<input id="sd-tab-item-9" name="sd-tab-set-1" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-9">
+Step 7</label><div class="sd-tab-content docutils">
+<p>Add <code class="docutils literal notranslate"><span class="pre">GROQ_API_KEY</span></code> as <code class="docutils literal notranslate"><span class="pre">NAME</span></code> and put the API key that was copied from Groq website as the <code class="docutils literal notranslate"><span class="pre">VALUE</span></code>. Provide Notebook Access</p>
+<p><img alt="Install Packages" src="_images/groq_07.png" /></p>
+</div>
+<input id="sd-tab-item-10" name="sd-tab-set-1" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-10">
+Step 8</label><div class="sd-tab-content docutils">
+<p>To verify the setup, copy this code in a new cell and and execute it.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">groq</span><span class="w"> </span><span class="kn">import</span> <span class="n">Groq</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">google.colab</span><span class="w"> </span><span class="kn">import</span> <span class="n">userdata</span>
+<span class="n">groq_api_key</span> <span class="o">=</span> <span class="n">userdata</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;GROQ_API_KEY&#39;</span><span class="p">)</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">Groq</span><span class="p">(</span><span class="n">api_key</span><span class="o">=</span><span class="n">groq_api_key</span><span class="p">)</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">completions</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;llama3-8b-8192&quot;</span><span class="p">,</span>  <span class="c1"># A basic model to test with</span>
+    <span class="n">messages</span><span class="o">=</span><span class="p">[</span>
+        <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="s2">&quot;Say hello world&quot;</span><span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+
+</pre></div>
+</div>
+</div>
+</div>
+<p>You should have Groq up and running on your Colab after this.</p>
+<!-- ````{tab-set}
+```{tab-item} Linux/MacOS
+Get API key
+![Description of the image](_static/image.png)
+```
+```{tab-item} Linux/MacOS
+![Description of the image](_static/image.png)
+```
+```` -->
+</section>
+<section id="build-your-first-chatbot">
+<h3>Build your first chatbot<a class="headerlink" href="#build-your-first-chatbot" title="Link to this heading">#</a></h3>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-11" name="sd-tab-set-2" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-11">
+Code</label><div class="sd-tab-content docutils">
+<p>Put the contents of this code in a new cell and run</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">gradio</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">gr</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">groq</span><span class="w"> </span><span class="kn">import</span> <span class="n">Groq</span>
+
+<span class="n">groq_api_key</span> <span class="o">=</span> <span class="n">userdata</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;GROQ_API_KEY&#39;</span><span class="p">)</span>
+<span class="n">MODEL</span> <span class="o">=</span> <span class="s2">&quot;llama-3.3-70b-versatile&quot;</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">Groq</span><span class="p">(</span><span class="n">api_key</span><span class="o">=</span><span class="n">groq_api_key</span><span class="p">)</span>
+<span class="n">system_message</span> <span class="o">=</span> <span class="s2">&quot;You are a helpful assistant&quot;</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">chat</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">history</span><span class="p">):</span>
+    <span class="n">history</span> <span class="o">=</span> <span class="p">[{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="n">msg</span><span class="p">[</span><span class="s2">&quot;role&quot;</span><span class="p">],</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">msg</span><span class="p">[</span><span class="s2">&quot;content&quot;</span><span class="p">]}</span> <span class="k">for</span> <span class="n">msg</span> <span class="ow">in</span> <span class="n">history</span><span class="p">]</span>
+    <span class="n">messages</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="p">[{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">system_message</span><span class="p">}]</span>
+        <span class="o">+</span> <span class="n">history</span>
+        <span class="o">+</span> <span class="p">[{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">message</span><span class="p">}]</span>
+    <span class="p">)</span>
+    <span class="n">stream</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">completions</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="n">MODEL</span><span class="p">,</span> <span class="n">messages</span><span class="o">=</span><span class="n">messages</span><span class="p">,</span> <span class="n">stream</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">stream</span><span class="p">:</span>
+        <span class="n">response</span> <span class="o">+=</span> <span class="n">chunk</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">delta</span><span class="o">.</span><span class="n">content</span> <span class="ow">or</span> <span class="s2">&quot;&quot;</span>
+        <span class="k">yield</span> <span class="n">response</span>
+
+<span class="n">gr</span><span class="o">.</span><span class="n">ChatInterface</span><span class="p">(</span><span class="n">fn</span><span class="o">=</span><span class="n">chat</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;messages&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">launch</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>You will get a message like this, which has a link that can be opened in a browser. Colab may even embed that chatbot for you.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Running<span class="w"> </span>Gradio<span class="w"> </span><span class="k">in</span><span class="w"> </span>a<span class="w"> </span>Colab<span class="w"> </span>notebook<span class="w"> </span>requires<span class="w"> </span>sharing<span class="w"> </span>enabled.<span class="w"> </span>Automatically<span class="w"> </span>setting<span class="w"> </span><span class="sb">`</span><span class="nv">share</span><span class="o">=</span>True<span class="sb">`</span><span class="w"> </span><span class="o">(</span>you<span class="w"> </span>can<span class="w"> </span>turn<span class="w"> </span>this<span class="w"> </span>off<span class="w"> </span>by<span class="w"> </span>setting<span class="w"> </span><span class="sb">`</span><span class="nv">share</span><span class="o">=</span>False<span class="sb">`</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="sb">`</span>launch<span class="o">()</span><span class="sb">`</span><span class="w"> </span>explicitly<span class="o">)</span>.
+
+Colab<span class="w"> </span>notebook<span class="w"> </span>detected.<span class="w"> </span>To<span class="w"> </span>show<span class="w"> </span>errors<span class="w"> </span><span class="k">in</span><span class="w"> </span>colab<span class="w"> </span>notebook,<span class="w"> </span><span class="nb">set</span><span class="w"> </span><span class="nv">debug</span><span class="o">=</span>True<span class="w"> </span><span class="k">in</span><span class="w"> </span>launch<span class="o">()</span>
+*<span class="w"> </span>Running<span class="w"> </span>on<span class="w"> </span>public<span class="w"> </span>URL:<span class="w"> </span>https://a42****.gradio.live
+
+This<span class="w"> </span>share<span class="w"> </span>link<span class="w"> </span>expires<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">72</span><span class="w"> </span>hours.<span class="w"> </span>For<span class="w"> </span>free<span class="w"> </span>permanent<span class="w"> </span>hosting<span class="w"> </span>and<span class="w"> </span>GPU<span class="w"> </span>upgrades,<span class="w"> </span>run<span class="w"> </span><span class="sb">`</span>gradio<span class="w"> </span>deploy<span class="sb">`</span><span class="w"> </span>from<span class="w"> </span>the<span class="w"> </span>terminal<span class="w"> </span><span class="k">in</span><span class="w"> </span>the<span class="w"> </span>working<span class="w"> </span>directory<span class="w"> </span>to<span class="w"> </span>deploy<span class="w"> </span>to<span class="w"> </span>Hugging<span class="w"> </span>Face<span class="w"> </span>Spaces<span class="w"> </span><span class="o">(</span>https://huggingface.co/spaces<span class="o">)</span>
+</pre></div>
+</div>
+<p><img alt="Chatbot" src="_images/chatbot.png" /></p>
+</section>
+</section>
+<section id="local">
+<h2>Local<a class="headerlink" href="#local" title="Link to this heading">#</a></h2>
+<p>If you have a local python development environment set up already, you can do the following.</p>
+<section id="install-packages">
+<h3>Install packages<a class="headerlink" href="#install-packages" title="Link to this heading">#</a></h3>
+<p>In the activated environment, run this script to install relevant python packages.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-12" name="sd-tab-set-3" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-12">
+Packages</label><div class="sd-tab-content docutils">
+<p>Run this in your terminal</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>groq<span class="w"> </span>dotenv<span class="w"> </span>gradio
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id1">
+<h3>Setup Groq API key<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<p>To access models from the groq inference enginer, we need their API key.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-13" name="sd-tab-set-4" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-13">
+Get API Key</label><div class="sd-tab-content docutils">
+<ol class="arabic simple">
+<li><p>Visit <a class="reference external" href="https://console.groq.com/keys">Groq’s platform</a> and create an account if you don’t have one</p></li>
+<li><p>Navigate to the API Keys section</p></li>
+<li><p>Click “Create API Key”</p></li>
+<li><p>Copy your API key to a secure location</p></li>
+</ol>
+</div>
+<input id="sd-tab-item-14" name="sd-tab-set-4" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-14">
+Create .env file</label><div class="sd-tab-content docutils">
+<p>Create a file whose filename is “.env”.
+Add you GROQ_API_KEY. Never expose this to anyone.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">GROQ_API_KEY</span><span class="o">=</span><span class="s2">&quot;your-api-key-here&quot;</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-15" name="sd-tab-set-4" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-15">
+Verify Groq setup</label><div class="sd-tab-content docutils">
+<p>Create a python file, call it verify_groq.py</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dotenv</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dotenv</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">groq</span><span class="w"> </span><span class="kn">import</span> <span class="n">Groq</span>
+
+<span class="n">load_dotenv</span><span class="p">()</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">Groq</span><span class="p">()</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">completions</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;llama3-8b-8192&quot;</span><span class="p">,</span>  <span class="c1"># A basic model to test with</span>
+    <span class="n">messages</span><span class="o">=</span><span class="p">[</span>
+        <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="s2">&quot;Say hello world&quot;</span><span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+
+</pre></div>
+</div>
+</div>
+</div>
+<p>Properly securing your API key is important. Never commit API keys to public repositories</p>
+</section>
+<section id="our-directory-so-far">
+<h3>Our directory so far<a class="headerlink" href="#our-directory-so-far" title="Link to this heading">#</a></h3>
+<p>Our directory structure should look like this now.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-16" name="sd-tab-set-5" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-16">
+Directory</label><div class="sd-tab-content docutils">
+<pre style="background-color: #ffffff; color: #000000; padding: 10px; border-radius: 5px; font-family: monospace;">
+📁 genai_course
+├── 📄 verify_groq.py
+├── ⚙️ .env 
+│   └── 🔑 GROQ_API_KEY="your-api-key-here"
+</pre>
+</div>
+</div>
+</section>
+<section id="id2">
+<h3>Build your first chatbot<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-17" name="sd-tab-set-6" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-17">
+Code</label><div class="sd-tab-content docutils">
+<p>Put the contents of this code in <code class="docutils literal notranslate"><span class="pre">app_chatbot.py</span></code></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dotenv</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dotenv</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">gradio</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">gr</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">groq</span><span class="w"> </span><span class="kn">import</span> <span class="n">Groq</span>
+
+<span class="n">load_dotenv</span><span class="p">()</span>
+<span class="n">MODEL</span> <span class="o">=</span> <span class="s2">&quot;llama-3.3-70b-versatile&quot;</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">Groq</span><span class="p">()</span>
+<span class="n">system_message</span> <span class="o">=</span> <span class="s2">&quot;You are a helpful assistant&quot;</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">chat</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">history</span><span class="p">):</span>
+    <span class="n">history</span> <span class="o">=</span> <span class="p">[{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="n">msg</span><span class="p">[</span><span class="s2">&quot;role&quot;</span><span class="p">],</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">msg</span><span class="p">[</span><span class="s2">&quot;content&quot;</span><span class="p">]}</span> <span class="k">for</span> <span class="n">msg</span> <span class="ow">in</span> <span class="n">history</span><span class="p">]</span>
+    <span class="n">messages</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="p">[{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">system_message</span><span class="p">}]</span>
+        <span class="o">+</span> <span class="n">history</span>
+        <span class="o">+</span> <span class="p">[{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">message</span><span class="p">}]</span>
+    <span class="p">)</span>
+    <span class="n">stream</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">completions</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="n">MODEL</span><span class="p">,</span> <span class="n">messages</span><span class="o">=</span><span class="n">messages</span><span class="p">,</span> <span class="n">stream</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">stream</span><span class="p">:</span>
+        <span class="n">response</span> <span class="o">+=</span> <span class="n">chunk</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">delta</span><span class="o">.</span><span class="n">content</span> <span class="ow">or</span> <span class="s2">&quot;&quot;</span>
+        <span class="k">yield</span> <span class="n">response</span>
+
+<span class="n">gr</span><span class="o">.</span><span class="n">ChatInterface</span><span class="p">(</span><span class="n">fn</span><span class="o">=</span><span class="n">chat</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;messages&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">launch</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>In your activated environment, run the following command.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-18" name="sd-tab-set-7" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-18">
+Run the script</label><div class="sd-tab-content docutils">
+<p>Run this in your terminal</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">app_chatbot</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>You might see an output like this</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>* Running on local URL:  http://127.0.0.1:7860
+
+To create a public link, set `share=True` in `launch()`.
+</pre></div>
+</div>
+<p>Open your browser and type in the local url. You have your first chatbot up and running.</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="genai_intro.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Course Outline</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#google-colab">Google Colab</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#access-colab-and-install-packages">Access Colab and install packages</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-groq-api-key">Setup Groq API key</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#build-your-first-chatbot">Build your first chatbot</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#local">Local</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-packages">Install packages</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Setup Groq API key</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#our-directory-so-far">Our directory so far</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Build your first chatbot</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Ajay
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
