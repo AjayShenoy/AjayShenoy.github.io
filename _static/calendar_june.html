@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=0.5">
+    <title>Cohort Calendar</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .calendar-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .month {
+            margin-bottom: 40px;
+        }
+        .month-name {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+            color: #2c3e50;
+            text-align: center;
+            font-weight: bold;
+        }
+        .weekdays {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            text-align: center;
+            font-weight: bold;
+            background-color: #f8f9fa;
+            border-bottom: 1px solid #dee2e6;
+            padding: 10px 0;
+        }
+        .days {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            grid-gap: 5px;
+            padding: 10px 0;
+        }
+        .day {
+            min-height: 80px;
+            padding: 10px;
+            border: 1px solid #dee2e6;
+            position: relative;
+        }
+        .day-number {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            font-weight: bold;
+        }
+        .current-month .day-number {
+            color: #333;
+        }
+        .other-month .day-number {
+            color: #aaa;
+        }
+        .event {
+            margin-top: 25px;
+            font-size: 0.85em;
+            padding: 3px 5px;
+            border-radius: 3px;
+            margin-bottom: 5px;
+            text-align: center;
+            word-wrap: break-word;
+        }
+        .live-session {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .office-hours {
+            background-color: #cce5ff;
+            color: #004085;
+            border: 1px solid #b8daff;
+        }
+        .cohort-start, .cohort-end {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .legend {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+        }
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            margin-right: 5px;
+            border-radius: 3px;
+        }
+        .empty-day {
+            background-color: #f8f9fa;
+        }
+        
+        @media (max-width: 768px) {
+            .day {
+                min-height: 60px;
+                padding: 5px;
+            }
+            .event {
+                font-size: 0.7em;
+                padding: 2px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="calendar-container">
+        <h1>Cohort Calendar (June 7 - July 13, 2025)</h1>
+        
+        <!-- June 2025 -->
+        <div class="month">
+            <div class="month-name">June 2025</div>
+            <div class="weekdays">
+                <div>Sun</div>
+                <div>Mon</div>
+                <div>Tue</div>
+                <div>Wed</div>
+                <div>Thu</div>
+                <div>Fri</div>
+                <div>Sat</div>
+            </div>
+            <div class="days">
+                <!-- May days (previous month) -->
+                <div class="day other-month"><div class="day-number">25</div></div>
+                <div class="day other-month"><div class="day-number">26</div></div>
+                <div class="day other-month"><div class="day-number">27</div></div>
+                <div class="day other-month"><div class="day-number">28</div></div>
+                <div class="day other-month"><div class="day-number">29</div></div>
+                <div class="day other-month"><div class="day-number">30</div></div>
+                <div class="day other-month"><div class="day-number">31</div></div>
+                
+                <!-- June days -->
+                <div class="day current-month"><div class="day-number">1</div></div>
+                <div class="day current-month"><div class="day-number">2</div></div>
+                <div class="day current-month"><div class="day-number">3</div></div>
+                <div class="day current-month"><div class="day-number">4</div>
+                    <div class="event office-hours">Office Hours<br>9:30-10:30 PM IST</div>
+                </div>
+                <div class="day current-month"><div class="day-number">5</div></div>
+                <div class="day current-month"><div class="day-number">6</div></div>
+                <div class="day current-month"><div class="day-number">7</div>
+                    <div class="event cohort-start">Cohort Start</div>
+                    <div class="event live-session">Live Session<br>4:00-6:00 PM IST</div>
+                </div>
+                
+                <div class="day current-month"><div class="day-number">8</div>
+                    <div class="event live-session">Live Session<br>4:00-6:00 PM IST</div>
+                </div>
+                <div class="day current-month"><div class="day-number">9</div></div>
+                <div class="day current-month"><div class="day-number">10</div></div>
+                <div class="day current-month"><div class="day-number">11</div>
+                    <div class="event office-hours">Office Hours<br>9:30-10:30 PM IST</div>
+                </div>
+                <div class="day current-month"><div class="day-number">12</div></div>
+                <div class="day current-month"><div class="day-number">13</div></div>
+                <div class="day current-month"><div class="day-number">14</div>
+                    <div class="event live-session">Live Session<br>4:00-6:00 PM IST</div>
+                </div>
+                
+                <div class="day current-month"><div class="day-number">15</div>
+                    <div class="event live-session">Live Session<br>4:00-6:00 PM IST</div>
+                </div>
+                <div class="day current-month"><div class="day-number">16</div></div>
+                <div class="day current-month"><div class="day-number">17</div></div>
+                <div class="day current-month"><div class="day-number">18</div>
+                    <div class="event office-hours">Office Hours<br>9:30-10:30 PM IST</div>
+                </div>
+                <div class="day current-month"><div class="day-number">19</div></div>
+                <div class="day current-month"><div class="day-number">20</div></div>
+                <div class="day current-month"><div class="day-number">21</div>
+                    <div class="event live-session">Live Session<br>4:00-6:00 PM IST</div>
+                </div>
+                
+                <div class="day current-month"><div class="day-number">22</div>
+                    <div class="event live-session">Live Session<br>4:00-6:00 PM IST</div>
+                </div>
+                <div class="day current-month"><div class="day-number">23</div></div>
+                <div class="day current-month"><div class="day-number">24</div></div>
+                <div class="day current-month"><div class="day-number">25</div>
+                    <div class="event office-hours">Office Hours<br>9:30-10:30 PM IST</div>
+                </div>
+                <div class="day current-month"><div class="day-number">26</div></div>
+                <div class="day current-month"><div class="day-number">27</div></div>
+                <div class="day current-month"><div class="day-number">28</div>
+                    <div class="event live-session">Live Session<br>4:00-6:00 PM IST</div>
+                </div>
+                
+                <div class="day current-month"><div class="day-number">29</div>
+                    <div class="event live-session">Live Session<br>4:00-6:00 PM IST</div>
+                </div>
+                <div class="day current-month"><div class="day-number">30</div></div>
+                <!-- July days -->
+                <div class="day other-month"><div class="day-number">1</div></div>
+                <div class="day other-month"><div class="day-number">2</div>
+                    <div class="event office-hours">Office Hours<br>9:30-10:30 PM IST</div>
+                </div>
+                <div class="day other-month"><div class="day-number">3</div></div>
+                <div class="day other-month"><div class="day-number">4</div></div>
+                <div class="day other-month"><div class="day-number">5</div>
+                    <div class="event live-session">Live Session<br>4:00-6:00 PM IST</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- July 2025 -->
+        <div class="month">
+            <div class="month-name">July 2025</div>
+            <div class="weekdays">
+                <div>Sun</div>
+                <div>Mon</div>
+                <div>Tue</div>
+                <div>Wed</div>
+                <div>Thu</div>
+                <div>Fri</div>
+                <div>Sat</div>
+            </div>
+            <div class="days">
+                <!-- June days (previous month) -->
+                <div class="day other-month"><div class="day-number">29</div></div>
+                <div class="day other-month"><div class="day-number">30</div></div>
+                <!-- July days -->
+                <div class="day current-month"><div class="day-number">1</div></div>
+                <div class="day current-month"><div class="day-number">2</div>
+                    <div class="event office-hours">Office Hours<br>9:30-10:30 PM IST</div>
+                </div>
+                <div class="day current-month"><div class="day-number">3</div></div>
+                <div class="day current-month"><div class="day-number">4</div></div>
+                <div class="day current-month"><div class="day-number">5</div>
+                    <div class="event live-session">Live Session<br>4:00-6:00 PM IST</div>
+                </div>
+                
+                <div class="day current-month"><div class="day-number">6</div>
+                    <div class="event live-session">Live Session<br>4:00-6:00 PM IST</div>
+                </div>
+                <div class="day current-month"><div class="day-number">7</div></div>
+                <div class="day current-month"><div class="day-number">8</div></div>
+                <div class="day current-month"><div class="day-number">9</div>
+                    <div class="event office-hours">Office Hours<br>9:30-10:30 PM IST</div>
+                </div>
+                <div class="day current-month"><div class="day-number">10</div></div>
+                <div class="day current-month"><div class="day-number">11</div></div>
+                <div class="day current-month"><div class="day-number">12</div>
+                    <div class="event live-session">Live Session<br>4:00-6:00 PM IST</div>
+                </div>
+                
+                <div class="day current-month"><div class="day-number">13</div>
+                    <div class="event cohort-end">Cohort End</div>
+                    <div class="event live-session">Live Session<br>4:00-6:00 PM IST</div>
+                </div>
+                <div class="day current-month"><div class="day-number">14</div></div>
+                <div class="day current-month"><div class="day-number">15</div></div>
+                <div class="day current-month"><div class="day-number">16</div></div>
+                <div class="day current-month"><div class="day-number">17</div></div>
+                <div class="day current-month"><div class="day-number">18</div></div>
+                <div class="day current-month"><div class="day-number">19</div></div>
+                
+                <div class="day current-month"><div class="day-number">20</div></div>
+                <div class="day current-month"><div class="day-number">21</div></div>
+                <div class="day current-month"><div class="day-number">22</div></div>
+                <div class="day current-month"><div class="day-number">23</div></div>
+                <div class="day current-month"><div class="day-number">24</div></div>
+                <div class="day current-month"><div class="day-number">25</div></div>
+                <div class="day current-month"><div class="day-number">26</div></div>
+                
+                <div class="day current-month"><div class="day-number">27</div></div>
+                <div class="day current-month"><div class="day-number">28</div></div>
+                <div class="day current-month"><div class="day-number">29</div></div>
+                <div class="day current-month"><div class="day-number">30</div></div>
+                <div class="day current-month"><div class="day-number">31</div></div>
+                <div class="day other-month"><div class="day-number">1</div></div>
+                <div class="day other-month"><div class="day-number">2</div></div>
+            </div>
+        </div>
+        
+        <!-- Legend -->
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-color" style="background-color: #d4edda; border: 1px solid #c3e6cb;"></div>
+                <span>Live Sessions</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background-color: #cce5ff; border: 1px solid #b8daff;"></div>
+                <span>Office Hours</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background-color: #f8d7da; border: 1px solid #f5c6cb;"></div>
+                <span>Cohort Start/End</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
