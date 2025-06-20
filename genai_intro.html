@@ -180,6 +180,11 @@
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Course Outline</a></li>
 <li class="toctree-l1"><a class="reference internal" href="setup.html">Setup</a></li>
 </ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Probability for ML and GenAI</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="math.html">Course Outline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rl.html">Hands-On RL</a></li>
+</ul>
 
     </div>
 </nav></div>
@@ -348,7 +353,7 @@ We will build 6 AI powered Apps, and learn the fundamentals of LLMs like tokeniz
 The sessions will have a large hands-on component and we dig deep into mathematical concepts.</p>
 <p>Session recordings will be made available.</p>
 <p>Apart from the live sessions, every week we will have office hours to clear doubts and have general conversations about AI. These office hours are optional.</p>
-<br>
+<hr class="docutils" />
 <section id="program-outline">
 <h2>Program Outline<a class="headerlink" href="#program-outline" title="Link to this heading">#</a></h2>
 <div class="sd-tab-set docutils">
@@ -359,11 +364,12 @@ Week 1</label><div class="sd-tab-content docutils">
 <p>In our very first week, we will setup the tools needed to build AI powered apps.</p>
 <p>Agenda</p>
 <ul class="simple">
-<li><p>Build our first AI power app</p></li>
+<li><p>Build our first AI powered app</p></li>
 <li><p>Use Groq inference engine</p></li>
 <li><p>Work with powerful LLama models</p></li>
+<li><p>Build a basic language model</p></li>
+<li><p>Understand the LLM generation process</p></li>
 <li><p>Learn about how LLMs represent words - tokenization</p></li>
-<li><p>A peek into next week - embeddings and RAG</p></li>
 </ul>
 </div>
 <input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
@@ -377,7 +383,7 @@ Week 2</label><div class="sd-tab-content docutils">
 <li><p>Ask questions to the LLMs specific to your business needs</p></li>
 <li><p>Learn about vector embeddings and vector databases</p></li>
 <li><p>Build your first RAG powered App</p></li>
-<li><p>A peek into next week - prompt engineering</p></li>
+<li><p>Build a recommender system app</p></li>
 </ul>
 </div>
 <input id="sd-tab-item-2" name="sd-tab-set-0" type="radio">
@@ -388,10 +394,11 @@ Week 3</label><div class="sd-tab-content docutils">
 <p>Agenda</p>
 <ul class="simple">
 <li><p>Learn about few-shot and zero-shot prompting techniques</p></li>
-<li><p>Master chain-of-thought and tree-of-thought prompting</p></li>
+<li><p>Master chain-of-thought style prompting to elicit reasoning in LLMs</p></li>
 <li><p>Implement system prompts and persona-based instructions</p></li>
-<li><p>Build a specialized app using advanced prompting strategies</p></li>
-<li><p>A peek into next week - transformers and attention mechanism</p></li>
+<li><p>Learn how prompts are evaluated</p></li>
+<li><p>Learn about temperature, top-p, and top-k parameters</p></li>
+<li><p>A peek into next week -  attention mechanism</p></li>
 </ul>
 </div>
 <input id="sd-tab-item-3" name="sd-tab-set-0" type="radio">
@@ -405,7 +412,6 @@ Week 4</label><div class="sd-tab-content docutils">
 <li><p>Learn about the all-important attention mechanism</p></li>
 <li><p>Implement GPT architecture from scratch</p></li>
 <li><p>Understand how LLMs are learning probability distributions</p></li>
-<li><p>We will also build an app to generate code</p></li>
 </ul>
 </div>
 <input id="sd-tab-item-4" name="sd-tab-set-0" type="radio">
@@ -417,9 +423,8 @@ Week 5</label><div class="sd-tab-content docutils">
 <ul class="simple">
 <li><p>Understand when and why to fine-tune pre-trained models</p></li>
 <li><p>Learn about parameter-efficient fine-tuning techniques (PEFT, LoRA)</p></li>
-<li><p>Prepare datasets for fine-tuning and avoid common pitfalls</p></li>
-<li><p>Implement a fine-tuning pipeline on a smaller open-source model</p></li>
-<li><p>A peek into next week - building autonomous AI agents</p></li>
+<li><p>Learn how finetuning can be done on classification tasks</p></li>
+<li><p>Update embedding models using fine tuning</p></li>
 </ul>
 </div>
 <input id="sd-tab-item-5" name="sd-tab-set-0" type="radio">
@@ -433,11 +438,9 @@ Week 6</label><div class="sd-tab-content docutils">
 <li><p>Implement tools and function-calling capabilities</p></li>
 <li><p>Build a multi-agent system with specialized roles</p></li>
 <li><p>Create an autonomous agent that can plan and execute complex workflows</p></li>
-<li><p>Learn other GenAI techniques - Gans, VAEs, Diffusion Models</p></li>
 </ul>
 </div>
 </div>
-<p><a href="https://topmate.io/ajay_shenoy/1479358" style="background-color: #3498db; color: white; padding: 8px 15px; text-decoration: none; font-weight: bold; border-radius: 5px; display: inline-block; font-size: 14px;">Download PDF brochure</a></p>
 </section>
 <hr class="docutils" />
 <section id="prerequisite-knowledge">
@@ -459,7 +462,7 @@ Math</label><div class="sd-tab-content docutils">
 <input id="sd-tab-item-8" name="sd-tab-set-1" type="radio">
 <label class="sd-tab-label" for="sd-tab-item-8">
 Machine Learning</label><div class="sd-tab-content docutils">
-<p>The course will be accessible to those without ML knowledge. However, a basic idea of loss functions and gradient descent will be helpful for students to fully grasp the more advanced concepts presented in later modules. While we’ll review these foundational elements at the beginning, familiarity with how models are trained by minimizing error and iteratively updating parameters will allow participants to engage more deeply with the practical exercises and implementation sections.</p>
+<p>The course will be accessible to those without ML knowledge. Whatever machine learning and deep learning concepts are needed will be covered in class wherever appropriate.</p>
 </div>
 </div>
 <p><a href="https://topmate.io/ajay_shenoy/1479358" style="background-color: #3498db; color: white; padding: 8px 15px; text-decoration: none; font-weight: bold; border-radius: 5px; display: inline-block; font-size: 14px;">Refresher materials</a></p>
@@ -469,11 +472,18 @@ Machine Learning</label><div class="sd-tab-content docutils">
 <h2>Upcoming Cohort - June 2025<a class="headerlink" href="#upcoming-cohort-june-2025" title="Link to this heading">#</a></h2>
 <p>📅 <strong>KEY DATES</strong></p>
 <ul class="simple">
-<li><p><strong>Cohort Duration</strong>: June 7th - July 13th, 2025</p></li>
+<li><p><strong>Cohort Duration</strong>: August 16th - September 21th, 2025</p></li>
 <li><p><strong>Live Sessions</strong>: Saturdays &amp; Sundays, 4:00 PM - 6:00 PM IST</p></li>
-<li><p><strong>Office Hours</strong>: Wednesdays, 9:30 PM - 10:30 PM IST</p></li>
+<li><p><strong>Office Hours</strong>: Wednesdays, 9:30 PM - 10:30 PM IST
+<br></p></li>
 </ul>
-<br>
+<hr class="docutils" />
+<div style="width: 100%; margin: 10px 0;">
+  <a href="https://topmate.io/ajay_shenoy/1598384" style="background-color: #D13B56; color: white; padding: 10px; text-decoration: none; font-weight: bold; border-radius: 10px; display: block; text-align: center; font-size: 22px; font-family: sans-serif; width: 100%; box-sizing: border-box;">
+    Enroll Now &nbsp;→
+  </a>
+</div>
+<hr class="docutils" />
 <p><strong>WHAT YOU’LL GET</strong></p>
 <ul style="list-style-type: none; padding-left: 5px; margin: 0;">
   <li style="padding: 6px 0; display: flex; align-items: flex-start;">
@@ -494,20 +504,8 @@ Machine Learning</label><div class="sd-tab-content docutils">
   </li>
 </ul>
 <hr class="docutils" />
-<div style="width: 100%; margin: 10px 0;">
-  <a href="https://topmate.io/ajay_shenoy/1508046" style="background-color: #D13B56; color: white; padding: 10px; text-decoration: none; font-weight: bold; border-radius: 10px; display: block; text-align: center; font-size: 22px; font-family: sans-serif; width: 100%; box-sizing: border-box;">
-    Enroll Now &nbsp;→
-  </a>
-</div>
-<hr class="docutils" />
-<p>This is how our calendar will look like in the months of April and May.<br>
-The live sessions will be highly interactive. Clear all your doubts then and there. <br>
-Make sure that you optimally use our free flowing office hours. <br>
-Be part of a vibrat WhatApp group to constantly stay up to date with trends. <br></p>
-<iframe src="_static/calendar.html" width="800" height="700" frameborder="0"></iframe>
 <p><em>If you have any questions, feel free to reach out</em> <br>
 <a href="https://topmate.io/ajay_shenoy/1476709/" style="background-color: #3498db; color: white; padding: 8px 15px; text-decoration: none; font-weight: bold; border-radius: 5px; display: inline-block; font-size: 14px;">Any Questions?</a></p>
-<hr class="docutils" />
 </section>
 </section>
 
