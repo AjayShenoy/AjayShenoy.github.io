@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css?v=a58b2861" />
@@ -184,6 +184,7 @@
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Course Outline</a></li>
 <li class="toctree-l1"><a class="reference internal" href="rl.html">Hands-On RL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="is.html">Understanding Monte Carlo Simulation and Importance Sampling in Taco Sales</a></li>
 </ul>
 
     </div>
@@ -353,51 +354,36 @@ document.write(`
 Module 1</label><div class="sd-tab-content docutils">
 <p>Introduction to Probability</p>
 <ul class="simple">
-<li><p>Sample Space</p></li>
-<li><p>Probabilities</p></li>
-<li><p>Conditional Probability</p></li>
-<li><p>Independence</p></li>
-<li><p>Bayes Theorem</p></li>
+<li><p>Sample Space, Probabilities, Conditional Probability, Bayes Theorem</p></li>
+<li><p>Distributions: Gaussian, Bernoulli, Softmax</p></li>
+<li><p>Importance of parameters of distributions</p></li>
 </ul>
 </div>
 <input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
 <label class="sd-tab-label" for="sd-tab-item-1">
 Module 2</label><div class="sd-tab-content docutils">
-<p>Random Variables and distirubitons</p>
+<p>Math Behind Machine Learning</p>
 <ul class="simple">
-<li><p>Conditional Expectation</p></li>
-<li><p>Gaussian</p></li>
-<li><p>Bernoulli, softmax, logistic</p></li>
-<li><p>Importance of parameters in machine learning</p></li>
+<li><p>Loss function, Gradient Descent, Regularization</p></li>
+<li><p>Entropy, KL Divergence, Maximum Likelihood</p></li>
+<li><p>Logistic and Linear Regression</p></li>
+<li><p>GANs, VAEs, Diffusion</p></li>
 </ul>
 </div>
 <input id="sd-tab-item-2" name="sd-tab-set-0" type="radio">
 <label class="sd-tab-label" for="sd-tab-item-2">
 Module 3</label><div class="sd-tab-content docutils">
-<p>Entropy, KL Divergence, Maximum Likelihood, Gradient Descent</p>
+<p>Intro to Reinforcement Learning- Logistic Regression</p>
 <ul class="simple">
-<li><p>Logistic Regression</p></li>
-<li><p>Linear Regression</p></li>
-<li><p>Diffusion Models</p></li>
-<li><p>Generative Adversarial Networks (GANs)</p></li>
-<li><p>Variantional Autoencoder (VAEs)</p></li>
-</ul>
-</div>
-<input id="sd-tab-item-3" name="sd-tab-set-0" type="radio">
-<label class="sd-tab-label" for="sd-tab-item-3">
-Module 4</label><div class="sd-tab-content docutils">
-<p>Intro to Reinforcement Learning</p>
-<ul class="simple">
-<li><p>State, action, policy, Bellman equations</p></li>
+<li><p>State, action, policy</p></li>
 <li><p>Gridworld and Q-Learning</p></li>
-<li><p>Importance sampling, policy gradient</p></li>
-<li><p>Deepseek paper walkthrough</p></li>
+<li><p>Importance sampling, policy gradient and DeepSeek</p></li>
 </ul>
 </div>
 </div>
 <section id="upcoming-cohort-july-2025">
 <h2>Upcoming Cohort - July 2025<a class="headerlink" href="#upcoming-cohort-july-2025" title="Link to this heading">#</a></h2>
-<p>📅 <strong>KEY DATES</strong></p>
+<p><strong>KEY DATES</strong></p>
 <ul class="simple">
 <li><p><strong>Cohort Duration</strong>: July 8th - August 14th, 2025</p></li>
 <li><p><strong>Live Sessions</strong>: Tuesdays &amp; Thursdays, 9:00 PM - 11:00 PM IST</p></li>
@@ -419,7 +405,7 @@ Module 4</label><div class="sd-tab-content docutils">
   </li>
   <li style="padding: 6px 0; display: flex; align-items: flex-start;">
     <span style="color: #2ecc71; margin-right: 10px; font-weight: bold;">✓</span>
-    <span>6 weeks of structured learning with practical projects  </span>
+    <span>6 weeks of structured learning with math and code together  </span>
   </li>
   <li style="padding: 6px 0; display: flex; align-items: flex-start;">
     <span style="color: #2ecc71; margin-right: 10px; font-weight: bold;">✓</span>
@@ -429,7 +415,11 @@ Module 4</label><div class="sd-tab-content docutils">
     <span style="color: #2ecc71; margin-right: 10px; font-weight: bold;">✓</span>
     <span>Exclusive WhatsApp community with peers and AI/ML experts  </span>
   </li>
-</ul></section>
+</ul>
+<hr class="docutils" />
+<p>📅 <strong>CALENDAR</strong>
+<img alt="Alt text description" src="_images/probability_july_light_background.png" /></p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">

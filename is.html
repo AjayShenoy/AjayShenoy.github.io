@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Course Outline &#8212; GenAI Course</title>
+    <title>Importance Sampling &#8212; GenAI Course</title>
   
   
   
@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css?v=a58b2861" />
@@ -58,12 +58,13 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'genai_intro';</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'is';</script>
     <script src="_static/custom.js?v=39abb6b3"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Setup" href="setup.html" />
-    <link rel="prev" title="Table of contents" href="toc.html" />
+    <link rel="prev" title="Hands-On RL" href="rl.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -176,15 +177,15 @@
             </li>
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">GenAI Course</span></p>
-<ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Course Outline</a></li>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="genai_intro.html">Course Outline</a></li>
 <li class="toctree-l1"><a class="reference internal" href="setup.html">Setup</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Probability for ML and GenAI</span></p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="math.html">Course Outline</a></li>
 <li class="toctree-l1"><a class="reference internal" href="rl.html">Hands-On RL</a></li>
-<li class="toctree-l1"><a class="reference internal" href="is.html">Understanding Monte Carlo Simulation and Importance Sampling in Taco Sales</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Importance Sampling</a></li>
 </ul>
 
     </div>
@@ -239,7 +240,7 @@
       
       
       
-      <li><a href="_sources/genai_intro.md" target="_blank"
+      <li><a href="_sources/is.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -323,7 +324,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Course Outline</h1>
+    <h1>Importance Sampling</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -333,9 +334,8 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#program-outline">Program Outline</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prerequisite-knowledge">Prerequisite Knowledge</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#upcoming-cohort-august-2025">Upcoming Cohort - August 2025</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-basic-monte-carlo-simulation">Step 1: Basic Monte Carlo Simulation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-importance-sampling-implementation">Step 2: Importance Sampling Implementation</a></li>
 </ul>
             </nav>
         </div>
@@ -347,167 +347,79 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="course-outline">
-<h1>Course Outline<a class="headerlink" href="#course-outline" title="Link to this heading">#</a></h1>
-<p>This is a 6-week live cohort based course.
-We will build 6 AI powered Apps, and learn the fundamentals of LLMs like tokenizations, embeddings, transformers, prompt engineering, RAG, fine tuning and AI Agents.
-The sessions will have a large hands-on component and we dig deep into mathematical concepts.</p>
-<p>Session recordings will be made available.</p>
-<p>Apart from the live sessions, every week we will have office hours to clear doubts and have general conversations about AI. These office hours are optional.</p>
-<hr class="docutils" />
-<section id="program-outline">
-<h2>Program Outline<a class="headerlink" href="#program-outline" title="Link to this heading">#</a></h2>
-<div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
-<label class="sd-tab-label" for="sd-tab-item-0">
-Week 1</label><div class="sd-tab-content docutils">
-<h4 class="rubric" id="our-first-ai-app">Our first AI App</h4>
-<p>In our very first week, we will setup the tools needed to build AI powered apps.</p>
-<p>Agenda</p>
-<ul class="simple">
-<li><p>Build our first AI powered app</p></li>
-<li><p>Use Groq inference engine</p></li>
-<li><p>Work with powerful LLama models</p></li>
-<li><p>Build a basic language model</p></li>
-<li><p>Understand the LLM generation process</p></li>
-<li><p>Learn about how LLMs represent words - tokenization</p></li>
-</ul>
+  <section class="tex2jax_ignore mathjax_ignore" id="importance-sampling">
+<h1>Importance Sampling<a class="headerlink" href="#importance-sampling" title="Link to this heading">#</a></h1>
+<section id="step-1-basic-monte-carlo-simulation">
+<h2>Step 1: Basic Monte Carlo Simulation<a class="headerlink" href="#step-1-basic-monte-carlo-simulation" title="Link to this heading">#</a></h2>
+<p>The foundation of this analysis lies in Monte Carlo simulation, a computational technique that uses random sampling to estimate numerical results. The <code class="docutils literal notranslate"><span class="pre">TacoSales</span></code> class begins by establishing the problem parameters in its initialization method.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">TacoSales</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">items</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Taco&quot;</span><span class="p">,</span> <span class="s2">&quot;Burrito&quot;</span><span class="p">,</span> <span class="s2">&quot;Quesadilla&quot;</span><span class="p">,</span> <span class="s2">&quot;Nachos&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">prices</span> <span class="o">=</span> <span class="p">[</span><span class="mi">80</span><span class="p">,</span> <span class="mi">120</span><span class="p">,</span> <span class="mi">180</span><span class="p">,</span> <span class="mi">250</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mysore_probs</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.15</span><span class="p">,</span> <span class="mf">0.15</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bangalore_probs</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.15</span><span class="p">,</span> <span class="mf">0.30</span><span class="p">,</span> <span class="mf">0.45</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">importance_weights</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_importance_weights</span><span class="p">()</span>
+</pre></div>
 </div>
-<input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
-<label class="sd-tab-label" for="sd-tab-item-1">
-Week 2</label><div class="sd-tab-content docutils">
-<h4 class="rubric" id="rag-powered-app">RAG-powered App</h4>
-<p>Having build our first app, we are now ready to solve practical business problems. Remember that LLMs don’t have access to your private data, and hence cannot answer questions relevant to your business problems. We address this issue by retrieval augmented generation (RAG)</p>
-<p>Agenda</p>
-<ul class="simple">
-<li><p>Learn how to connect the powerful LLMs to your private data</p></li>
-<li><p>Ask questions to the LLMs specific to your business needs</p></li>
-<li><p>Learn about vector embeddings and vector databases</p></li>
-<li><p>Build your first RAG powered App</p></li>
-<li><p>Build a recommender system app</p></li>
-</ul>
+<p><a href="https://topmate.io/ajay_shenoy/1605804" style="background-color: #3498db; color: white; padding: 8px 15px; text-decoration: none; font-weight: bold; border-radius: 5px; display: inline-block; font-size: 14px;">Download full code</a></p>
+<p>The system models four menu items with distinct prices and probability distributions for two different markets: Mysore and Bangalore. Notice how customer preferences differ significantly between cities - Mysore customers favor cheaper items (40% probability for tacos), while Bangalore customers prefer premium options (45% probability for nachos).</p>
+<p>The core simulation method implements a straightforward Monte Carlo approach:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">simulate_sales</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">probs</span><span class="p">,</span> <span class="n">n_samples</span><span class="o">=</span><span class="mi">1000</span><span class="p">):</span>
+    <span class="n">sales</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_samples</span><span class="p">):</span>
+        <span class="n">item_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">),</span> <span class="n">p</span><span class="o">=</span><span class="n">probs</span><span class="p">)</span>
+        <span class="n">sales</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">prices</span><span class="p">[</span><span class="n">item_idx</span><span class="p">])</span>
+    <span class="n">avg_sale</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">sales</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">avg_sale</span>
+</pre></div>
 </div>
-<input id="sd-tab-item-2" name="sd-tab-set-0" type="radio">
-<label class="sd-tab-label" for="sd-tab-item-2">
-Week 3</label><div class="sd-tab-content docutils">
-<h4 class="rubric" id="prompt-engineering">Prompt Engineering</h4>
-<p>Steering the run time behaviour of LLMs are extremely important for practical use cases. We’ll explore techniques to get the most out of these models through effective prompting.</p>
-<p>Agenda</p>
-<ul class="simple">
-<li><p>Learn about few-shot and zero-shot prompting techniques</p></li>
-<li><p>Master chain-of-thought style prompting to elicit reasoning in LLMs</p></li>
-<li><p>Implement system prompts and persona-based instructions</p></li>
-<li><p>Learn how prompts are evaluated</p></li>
-<li><p>Learn about temperature, top-p, and top-k parameters</p></li>
-<li><p>A peek into next week -  attention mechanism</p></li>
-</ul>
-</div>
-<input id="sd-tab-item-3" name="sd-tab-set-0" type="radio">
-<label class="sd-tab-label" for="sd-tab-item-3">
-Week 4</label><div class="sd-tab-content docutils">
-<h4 class="rubric" id="transformer-from-scratch">Transformer from scratch</h4>
-<p>Now that we know tokenizations, embeddings, and prompt engineering, we arrive at the central part of the LLM - the transformer architecture.</p>
-<p>Agenda</p>
-<ul class="simple">
-<li><p>Dissect the transformer architecture</p></li>
-<li><p>Learn about the all-important attention mechanism</p></li>
-<li><p>Implement GPT architecture from scratch</p></li>
-<li><p>Understand how LLMs are learning probability distributions</p></li>
-</ul>
-</div>
-<input id="sd-tab-item-4" name="sd-tab-set-0" type="radio">
-<label class="sd-tab-label" for="sd-tab-item-4">
-Week 5</label><div class="sd-tab-content docutils">
-<h4 class="rubric" id="fine-tuning-llms">Fine-tuning LLMs</h4>
-<p>Powered by our knowledge of LLM architecture, we learn how to update the weights of an LLM based on finetuning on data that we are interested in.</p>
-<p>Agenda</p>
-<ul class="simple">
-<li><p>Understand when and why to fine-tune pre-trained models</p></li>
-<li><p>Learn about parameter-efficient fine-tuning techniques (PEFT, LoRA)</p></li>
-<li><p>Learn how finetuning can be done on classification tasks</p></li>
-<li><p>Update embedding models using fine tuning</p></li>
-</ul>
-</div>
-<input id="sd-tab-item-5" name="sd-tab-set-0" type="radio">
-<label class="sd-tab-label" for="sd-tab-item-5">
-Week 6</label><div class="sd-tab-content docutils">
-<h4 class="rubric" id="advanced-ai-agents">Advanced AI Agents</h4>
-<p>The final week is where we use all our knowledge to build advanced AI Agents that can autonomously solve complex tasks.</p>
-<p>Agenda</p>
-<ul class="simple">
-<li><p>Understand the agent architecture and reasoning frameworks</p></li>
-<li><p>Implement tools and function-calling capabilities</p></li>
-<li><p>Build a multi-agent system with specialized roles</p></li>
-<li><p>Create an autonomous agent that can plan and execute complex workflows</p></li>
-</ul>
-</div>
-</div>
-</section>
-<hr class="docutils" />
-<section id="prerequisite-knowledge">
-<h2>Prerequisite Knowledge<a class="headerlink" href="#prerequisite-knowledge" title="Link to this heading">#</a></h2>
-<p>While the course is accesible to a beginner audience, prior coding experience is expected.</p>
-<div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-6" name="sd-tab-set-1" type="radio">
-<label class="sd-tab-label" for="sd-tab-item-6">
-Coding</label><div class="sd-tab-content docutils">
-<p>You are expected have some understanding of coding - ideally in Python.
-If you are comfortable in other OOP languages such as Java and Javascript, you should feel comfortable following along.
-All apps we build will be in Python. If you have never coded in your life, this course is not for you.</p>
-</div>
-<input id="sd-tab-item-7" name="sd-tab-set-1" type="radio">
-<label class="sd-tab-label" for="sd-tab-item-7">
-Math</label><div class="sd-tab-content docutils">
-<p>You are expected to know how to add two vectors and visualize this geometrically, and have a basic understanding of conditional probability.</p>
-</div>
-<input id="sd-tab-item-8" name="sd-tab-set-1" type="radio">
-<label class="sd-tab-label" for="sd-tab-item-8">
-Machine Learning</label><div class="sd-tab-content docutils">
-<p>The course will be accessible to those without ML knowledge. Whatever machine learning and deep learning concepts are needed will be covered in class wherever appropriate.</p>
-</div>
-</div>
-<p><a href="https://topmate.io/ajay_shenoy/1479358" style="background-color: #3498db; color: white; padding: 8px 15px; text-decoration: none; font-weight: bold; border-radius: 5px; display: inline-block; font-size: 14px;">Refresher materials</a></p>
-</section>
-<hr class="docutils" />
-<section id="upcoming-cohort-august-2025">
-<h2>Upcoming Cohort - August 2025<a class="headerlink" href="#upcoming-cohort-august-2025" title="Link to this heading">#</a></h2>
-<p>📅 <strong>KEY DATES</strong></p>
-<ul class="simple">
-<li><p><strong>Cohort Duration</strong>: August 16th - September 21th, 2025</p></li>
-<li><p><strong>Live Sessions</strong>: Saturdays &amp; Sundays, 4:00 PM - 6:00 PM IST</p></li>
-<li><p><strong>Office Hours</strong>: Wednesdays, 9:30 PM - 10:30 PM IST
-<br></p></li>
-</ul>
-<hr class="docutils" />
+<p>This method estimates the expected revenue per sale by repeatedly sampling from the probability distribution. Mathematically, we’re approximating:</p>
+<div class="math notranslate nohighlight">
+\[E[X] = \sum_{i=1}^{n} x_i \cdot p_i\]</div>
+<p>where <span class="math notranslate nohighlight">\(x_i\)</span> represents the price of item <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(p_i\)</span> is its selection probability. The Monte Carlo estimate converges to this true expected value as the number of samples increases.</p>
+<p>Join the upcoming live cohort where we explain these concepts in great detail:</p>
 <div style="width: 100%; margin: 10px 0;">
-  <a href="https://topmate.io/ajay_shenoy/1598384" style="background-color: #D13B56; color: white; padding: 10px; text-decoration: none; font-weight: bold; border-radius: 10px; display: block; text-align: center; font-size: 22px; font-family: sans-serif; width: 100%; box-sizing: border-box;">
+  <a href="https://topmate.io/ajay_shenoy/1566632" style="background-color: #D13B56; color: white; padding: 10px; text-decoration: none; font-weight: bold; border-radius: 10px; display: block; text-align: center; font-size: 22px; font-family: sans-serif; width: 100%; box-sizing: border-box;">
     Enroll Now &nbsp;→
   </a>
 </div>
-<hr class="docutils" />
-<p><strong>WHAT YOU’LL GET</strong></p>
-<ul style="list-style-type: none; padding-left: 5px; margin: 0;">
-  <li style="padding: 6px 0; display: flex; align-items: flex-start;">
-    <span style="color: #2ecc71; margin-right: 10px; font-weight: bold;">✓</span>
-    <span>Hands-on experience building cutting-edge GenAI applications  </span>
-  </li>
-  <li style="padding: 6px 0; display: flex; align-items: flex-start;">
-    <span style="color: #2ecc71; margin-right: 10px; font-weight: bold;">✓</span>
-    <span>6 weeks of structured learning with practical projects  </span>
-  </li>
-  <li style="padding: 6px 0; display: flex; align-items: flex-start;">
-    <span style="color: #2ecc71; margin-right: 10px; font-weight: bold;">✓</span>
-    <span>Direct access to industry professionals  </span>
-  </li>
-  <li style="padding: 6px 0; display: flex; align-items: flex-start;">
-    <span style="color: #2ecc71; margin-right: 10px; font-weight: bold;">✓</span>
-    <span>Exclusive WhatsApp community with peers and AI/ML experts  </span>
-  </li>
-</ul>
-<hr class="docutils" />
-<p><em>If you have any questions, feel free to reach out</em> <br>
-<a href="https://topmate.io/ajay_shenoy/1476709/" style="background-color: #3498db; color: white; padding: 8px 15px; text-decoration: none; font-weight: bold; border-radius: 5px; display: inline-block; font-size: 14px;">Any Questions?</a></p>
 </section>
+<section id="step-2-importance-sampling-implementation">
+<h2>Step 2: Importance Sampling Implementation<a class="headerlink" href="#step-2-importance-sampling-implementation" title="Link to this heading">#</a></h2>
+<p>While direct simulation works well when we can easily sample from the target distribution, real-world scenarios often present challenges. What if we want to estimate Bangalore sales patterns but only have access to Mysore customer data? This is where importance sampling becomes invaluable.</p>
+<p>The importance weights are calculated to bridge the gap between the two distributions:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">get_importance_weights</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">[</span>
+        <span class="n">b_prob</span> <span class="o">/</span> <span class="n">m_prob</span>
+        <span class="k">for</span> <span class="n">b_prob</span><span class="p">,</span> <span class="n">m_prob</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">bangalore_probs</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">mysore_probs</span><span class="p">)</span>
+    <span class="p">]</span>
+</pre></div>
+</div>
+<p>These weights represent the likelihood ratio between the target distribution (Bangalore) and the proposal distribution (Mysore). The weight for item <span class="math notranslate nohighlight">\(i\)</span> is:</p>
+<div class="math notranslate nohighlight">
+\[w_i = \frac{p_i^{(target)}}{p_i^{(proposal)}} = \frac{p_i^{(bangalore)}}{p_i^{(mysore)}}\]</div>
+<p>The importance sampling estimator is implemented in the following method:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">simulate_bangalore_from_mysore</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_samples</span><span class="o">=</span><span class="mi">1000</span><span class="p">):</span>
+    <span class="n">weighted_sales</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_samples</span><span class="p">):</span>
+        <span class="n">item_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">),</span> <span class="n">p</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">mysore_probs</span><span class="p">)</span>
+        <span class="n">weighted_sale</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">prices</span><span class="p">[</span><span class="n">item_idx</span><span class="p">]</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">importance_weights</span><span class="p">[</span><span class="n">item_idx</span><span class="p">]</span>
+        <span class="n">weighted_sales</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">weighted_sale</span><span class="p">)</span>
+    <span class="n">avg_weighted_sale</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">weighted_sales</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">avg_weighted_sale</span>
+</pre></div>
+</div>
+<p>This technique allows us to estimate the expected value under the Bangalore distribution while sampling from the Mysore distribution. The mathematical foundation is:</p>
+<div class="math notranslate nohighlight">
+\[E_{target}[X] = E_{proposal}\left[X \cdot \frac{p_{target}(X)}{p_{proposal}(X)}\right]\]</div>
+<p>By weighting each sample by its importance ratio, we correct for the bias introduced by sampling from the wrong distribution. This approach is particularly powerful when the target distribution is difficult to sample from directly, or when we want to reuse existing simulation infrastructure for multiple scenarios.</p>
+<p>The comparison method validates this approach by running all three estimators and comparing their results, demonstrating how importance sampling can effectively bridge different market conditions using a single simulation framework.</p>
+<p>Join the upcoming live cohort where we explain these concepts in great detail:</p>
+<div style="width: 100%; margin: 10px 0;">
+  <a href="https://topmate.io/ajay_shenoy/1566632" style="background-color: #D13B56; color: white; padding: 10px; text-decoration: none; font-weight: bold; border-radius: 10px; display: block; text-align: center; font-size: 22px; font-family: sans-serif; width: 100%; box-sizing: border-box;">
+    Enroll Now &nbsp;→
+  </a>
+</div></section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -541,22 +453,13 @@ Machine Learning</label><div class="sd-tab-content docutils">
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="toc.html"
+       href="rl.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Table of contents</p>
+        <p class="prev-next-title">Hands-On RL</p>
       </div>
-    </a>
-    <a class="right-next"
-       href="setup.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Setup</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>
@@ -574,9 +477,8 @@ Machine Learning</label><div class="sd-tab-content docutils">
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#program-outline">Program Outline</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prerequisite-knowledge">Prerequisite Knowledge</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#upcoming-cohort-august-2025">Upcoming Cohort - August 2025</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-basic-monte-carlo-simulation">Step 1: Basic Monte Carlo Simulation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-importance-sampling-implementation">Step 2: Importance Sampling Implementation</a></li>
 </ul>
   </nav></div>
 
