@@ -334,7 +334,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-basic-monte-carlo-simulation">Step 1: Basic Monte Carlo Simulation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-monte-carlo-simulation">Basic Monte Carlo Simulation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-importance-sampling-implementation">Step 2: Importance Sampling Implementation</a></li>
 </ul>
             </nav>
@@ -349,8 +349,12 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="importance-sampling">
 <h1>Importance Sampling<a class="headerlink" href="#importance-sampling" title="Link to this heading">#</a></h1>
-<section id="step-1-basic-monte-carlo-simulation">
-<h2>Step 1: Basic Monte Carlo Simulation<a class="headerlink" href="#step-1-basic-monte-carlo-simulation" title="Link to this heading">#</a></h2>
+<p>Imagine you run a taco restaurant chain and want to expand from Mysore to Bangalore. You’ve observed that customers in these cities have dramatically different preferences - Mysore customers love budget-friendly tacos, while Bangalore customers prefer premium nachos and quesadillas.
+The challenge: how do you estimate potential revenue in Bangalore without actually operating there yet? You could build separate simulation models for each city, but what if you want to leverage your existing Mysore data to predict Bangalore performance? This is a classic problem in computational statistics where we need to estimate outcomes for one scenario using data from another.</p>
+<p>Observation: Mysore people are 4 times more likely to order Taco, 2 times more likely to order Burrito than Bangalore people.
+Bangalore people are 2 times more likely to order Quesadilla, and 3 times more likely to order Nachos.</p>
+<section id="basic-monte-carlo-simulation">
+<h2>Basic Monte Carlo Simulation<a class="headerlink" href="#basic-monte-carlo-simulation" title="Link to this heading">#</a></h2>
 <p>The foundation of this analysis lies in Monte Carlo simulation, a computational technique that uses random sampling to estimate numerical results. The <code class="docutils literal notranslate"><span class="pre">TacoSales</span></code> class begins by establishing the problem parameters in its initialization method.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">TacoSales</span><span class="p">:</span>
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -481,7 +485,7 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-basic-monte-carlo-simulation">Step 1: Basic Monte Carlo Simulation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-monte-carlo-simulation">Basic Monte Carlo Simulation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-importance-sampling-implementation">Step 2: Importance Sampling Implementation</a></li>
 </ul>
   </nav></div>
