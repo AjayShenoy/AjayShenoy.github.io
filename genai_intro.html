@@ -180,14 +180,6 @@
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Course Outline</a></li>
 <li class="toctree-l1"><a class="reference internal" href="setup.html">Setup</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Probability for ML and GenAI</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="math.html">Course Outline</a></li>
-<li class="toctree-l1"><a class="reference internal" href="gan.html">Intro to GANs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sr_gan.html">SR GAN</a></li>
-<li class="toctree-l1"><a class="reference internal" href="rl.html">Hands-On RL</a></li>
-<li class="toctree-l1"><a class="reference internal" href="is.html">Importance Sampling</a></li>
-</ul>
 
     </div>
 </nav></div>
@@ -352,7 +344,7 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="course-outline">
 <h1>Course Outline<a class="headerlink" href="#course-outline" title="Link to this heading">#</a></h1>
 <p>This is a 6-week live cohort based course.
-We will build 6 AI powered Apps, and learn the fundamentals of LLMs like tokenizations, embeddings, transformers, prompt engineering, RAG, fine tuning and AI Agents.
+We will learn the fundamentals of LLMs like tokenizations, embeddings, RAG, prompt engineering, attention, transformers, fine tuning, and AI Agents.
 The sessions will have a large hands-on component and we dig deep into mathematical concepts.</p>
 <p>Session recordings will be made available.</p>
 <p>Apart from the live sessions, every week we will have office hours to clear doubts and have general conversations about AI. These office hours are optional.</p>
@@ -367,19 +359,18 @@ Week 1</label><div class="sd-tab-content docutils">
 <p>In our very first week, we will setup the tools needed to build AI powered apps.</p>
 <p>Agenda</p>
 <ul class="simple">
-<li><p>Build our first AI powered app</p></li>
-<li><p>Use Groq inference engine</p></li>
-<li><p>Work with powerful LLama models</p></li>
-<li><p>Build a basic language model</p></li>
 <li><p>Understand the LLM generation process</p></li>
-<li><p>Learn about how LLMs represent words - tokenization</p></li>
+<li><p>Build a basic language model from scratch</p></li>
+<li><p>Use a data structure to optimally compute the generation process</p></li>
+<li><p>Learn about how LLMs represent words initially - tokenization</p></li>
+<li><p>Build a tokenizer from scratch</p></li>
 </ul>
 </div>
 <input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
 <label class="sd-tab-label" for="sd-tab-item-1">
 Week 2</label><div class="sd-tab-content docutils">
 <h4 class="rubric" id="rag-powered-app">RAG-powered App</h4>
-<p>Having build our first app, we are now ready to solve practical business problems. Remember that LLMs don’t have access to your private data, and hence cannot answer questions relevant to your business problems. We address this issue by retrieval augmented generation (RAG)</p>
+<p>Remember that LLMs don’t have access to your private data, and hence cannot answer questions relevant to your business problems. We address this issue by retrieval augmented generation (RAG).</p>
 <p>Agenda</p>
 <ul class="simple">
 <li><p>Learn how to connect the powerful LLMs to your private data</p></li>
@@ -413,8 +404,9 @@ Week 4</label><div class="sd-tab-content docutils">
 <ul class="simple">
 <li><p>Dissect the transformer architecture</p></li>
 <li><p>Learn about the all-important attention mechanism</p></li>
+<li><p>Visualize contextual embeddings</p></li>
 <li><p>Implement GPT architecture from scratch</p></li>
-<li><p>Understand how LLMs are learning probability distributions</p></li>
+<li><p>Understand how LLMs learn probability distributions</p></li>
 </ul>
 </div>
 <input id="sd-tab-item-4" name="sd-tab-set-0" type="radio">
@@ -448,36 +440,35 @@ Week 6</label><div class="sd-tab-content docutils">
 <hr class="docutils" />
 <section id="prerequisite-knowledge">
 <h2>Prerequisite Knowledge<a class="headerlink" href="#prerequisite-knowledge" title="Link to this heading">#</a></h2>
-<p>While the course is accesible to a beginner audience, prior coding experience is expected.</p>
-<div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-6" name="sd-tab-set-1" type="radio">
-<label class="sd-tab-label" for="sd-tab-item-6">
-Coding</label><div class="sd-tab-content docutils">
-<p>You are expected have some understanding of coding - ideally in Python.
-If you are comfortable in other OOP languages such as Java and Javascript, you should feel comfortable following along.
-All apps we build will be in Python. If you have never coded in your life, this course is not for you.</p>
-</div>
-<input id="sd-tab-item-7" name="sd-tab-set-1" type="radio">
-<label class="sd-tab-label" for="sd-tab-item-7">
-Math</label><div class="sd-tab-content docutils">
-<p>You are expected to know how to add two vectors and visualize this geometrically, and have a basic understanding of conditional probability.</p>
-</div>
-<input id="sd-tab-item-8" name="sd-tab-set-1" type="radio">
-<label class="sd-tab-label" for="sd-tab-item-8">
-Machine Learning</label><div class="sd-tab-content docutils">
-<p>The course will be accessible to those without ML knowledge. Whatever machine learning and deep learning concepts are needed will be covered in class wherever appropriate.</p>
-</div>
-</div>
-<p><a href="https://topmate.io/ajay_shenoy/1479358" style="background-color: #3498db; color: white; padding: 8px 15px; text-decoration: none; font-weight: bold; border-radius: 5px; display: inline-block; font-size: 14px;">Refresher materials</a></p>
+<p>The course is accesible to a beginner audience. The only prerequisite knowledge is Python coding. If you are comfortable in other coding languages, you should feel comfortable following along.
+If you have never coded in your life, this course is not for you.
+There is no prerequisite knowledge of AI/ML needed for this course.</p>
+<!-- While the course is accesible to a beginner audience, prior coding experience is expected. 
+````{tab-set}
+```{tab-item} Coding
+You are expected have some understanding of coding - ideally in Python.
+If you are comfortable in other OOP languages such as Java and Javascript, you should feel comfortable following along. 
+All apps we build will be in Python. If you have never coded in your life, this course is not for you.
+```
+```{tab-item} Math
+You are expected to know how to add two vectors and visualize this geometrically, and have a basic understanding of conditional probability.
+
+```
+```{tab-item} Machine Learning
+The course will be accessible to those without ML knowledge. Whatever machine learning and deep learning concepts are needed will be covered in class wherever appropriate.
+
+```
+```` -->
+<p><a href="https://topmate.io/ajay_shenoy/1479358" style="background-color: #3498db; color: white; padding: 8px 15px; text-decoration: none; font-weight: bold; border-radius: 5px; display: inline-block; font-size: 14px;">Download Refresher materials</a></p>
 </section>
 <hr class="docutils" />
 <section id="upcoming-cohort-august-2025">
 <h2>Upcoming Cohort - August 2025<a class="headerlink" href="#upcoming-cohort-august-2025" title="Link to this heading">#</a></h2>
 <p>📅 <strong>KEY DATES</strong></p>
 <ul class="simple">
-<li><p><strong>Cohort Duration</strong>: August 16th - September 21th, 2025</p></li>
-<li><p><strong>Live Sessions</strong>: Saturdays &amp; Sundays, 4:00 PM - 6:00 PM IST</p></li>
-<li><p><strong>Office Hours</strong>: Wednesdays, 9:30 PM - 10:30 PM IST
+<li><p><strong>Cohort Duration</strong>: October 14th - November 20th, 2025</p></li>
+<li><p><strong>Live Sessions</strong>: Tuesdays &amp; Thursdays, 9:00 PM - 11:00 PM IST</p></li>
+<li><p><strong>Office Hours</strong>: Saturdays, 2:30 PM - 3:30 PM IST
 <br></p></li>
 </ul>
 <hr class="docutils" />
@@ -504,6 +495,10 @@ Machine Learning</label><div class="sd-tab-content docutils">
   <li style="padding: 6px 0; display: flex; align-items: flex-start;">
     <span style="color: #2ecc71; margin-right: 10px; font-weight: bold;">✓</span>
     <span>Exclusive WhatsApp community with peers and AI/ML experts  </span>
+  </li>
+  <li style="padding: 6px 0; display: flex; align-items: flex-start;">
+    <span style="color: #2ecc71; margin-right: 10px; font-weight: bold;">✓</span>
+    <span>Access to session recordings with no time limit
   </li>
 </ul>
 <hr class="docutils" />
