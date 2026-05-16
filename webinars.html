@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Agentic AI Evals | Beyond Vectors</title>
+
+  <meta name="description" content="Join a free live webinar by Beyond Vectors on building AI agents for enterprise. Reserve your spot now." />
+  <meta name="robots" content="noindex, nofollow" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --red: #D13B56;
+      --dark: #0f172a;
+      --mid: #1e293b;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      --bg: #f8fafc;
+      --white: #ffffff;
+      --radius: 12px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--dark);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* NAV */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.9);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 60px;
+    }
+    nav .brand {
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+    }
+    nav .brand img {
+      height: 36px;
+      width: auto;
+      border-radius: 4px;
+    }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 60%, #1a2744 100%);
+      color: white;
+      padding: 80px 24px 72px;
+      text-align: center;
+    }
+    .hero .badge {
+      display: inline-block;
+      background: rgba(209,59,86,0.2);
+      color: #f87171;
+      border: 1px solid rgba(209,59,86,0.4);
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 4px 14px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-size: clamp(1.8rem, 4.5vw, 3rem);
+      font-weight: 800;
+      line-height: 1.15;
+      max-width: 720px;
+      margin: 0 auto 20px;
+    }
+    .hero h1 span { color: #f87171; }
+    .hero p {
+      font-size: 1.1rem;
+      color: #94a3b8;
+      max-width: 520px;
+      margin: 0 auto 36px;
+    }
+
+    /* CTA BUTTON */
+    .btn-primary {
+      background: var(--red);
+      color: white;
+      padding: 14px 40px;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: opacity 0.2s, transform 0.15s;
+      display: inline-block;
+    }
+    .btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
+
+    /* CONTENT SECTION */
+    .section {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 64px 24px;
+      flex: 1;
+    }
+
+    .section h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      color: var(--dark);
+    }
+
+    .points {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-bottom: 48px;
+    }
+    .points li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 1rem;
+      color: var(--mid);
+    }
+    .points li::before {
+      content: "✓";
+      color: var(--red);
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    /* INSTRUCTORS */
+    .instructor-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 24px;
+    }
+    .instructor-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px;
+    }
+    .instructor-card h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .instructor-card .role {
+      font-size: 0.85rem;
+      color: var(--red);
+      font-weight: 600;
+      margin-bottom: 14px;
+    }
+    .instructor-card p {
+      font-size: 0.9rem;
+      color: #475569;
+      line-height: 1.65;
+      margin-bottom: 10px;
+    }
+
+    /* COURSE PROMO */
+    .course-block {
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      border-radius: var(--radius);
+      padding: 36px;
+      color: white;
+    }
+    .course-block .course-label {
+      display: inline-block;
+      background: rgba(209,59,86,0.2);
+      color: #f87171;
+      border: 1px solid rgba(209,59,86,0.4);
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 3px 12px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .course-block h3 {
+      font-size: 1.35rem;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+    .course-block h3 span { color: #f87171; }
+    .course-block .course-meta {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+    .course-block .meta-item {
+      font-size: 0.875rem;
+      color: #94a3b8;
+    }
+    .course-block .meta-item strong {
+      color: white;
+      display: block;
+      font-size: 0.95rem;
+    }
+    .course-block p {
+      color: #94a3b8;
+      font-size: 0.95rem;
+      margin-bottom: 24px;
+    }
+    .btn-outline-white {
+      border: 1px solid rgba(255,255,255,0.35);
+      color: white;
+      padding: 12px 28px;
+      border-radius: 10px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.2s;
+      display: inline-block;
+    }
+    .btn-outline-white:hover { background: rgba(255,255,255,0.1); }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 24px;
+      font-size: 0.8rem;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="https://beyondvectors.com" class="brand">
+      <img src="logo.jpeg" alt="Beyond Vectors" />
+    </a>
+  </nav>
+
+  <div class="hero">
+    <div class="badge">Free Webinar</div>
+    <h1>Agentic AI <span>Evals</span></h1>
+    <p>A live session on how to systematically measure and improve the quality of LLM-powered systems - from prompt evaluation to end-to-end agentic error analysis.</p>
+    <div style="display:flex; gap:20px; justify-content:center; margin-bottom:28px; flex-wrap:wrap;">
+      <span style="color:#e2e8f0; font-size:1.6rem; font-weight:700;">📅 &nbsp;May 22nd, 2026</span>
+      <span style="color:#e2e8f0; font-size:1.6rem; font-weight:700;">🕘 &nbsp;9:00 PM IST</span>
+    </div>
+    <a href="https://luma.com/tg87ro0b" class="btn-primary">Register &rarr;</a>
+  </div>
+
+  <div class="section">
+    <h2>What we'll cover</h2>
+    <ul class="points">
+      <li>How to systematically measure and compare the quality of LLM-powered systems using automated evaluation frameworks</li>
+      <li>Prompt evaluation with LLM-as-judge scoring</li>
+      <li>RAG pipeline evaluation across various configurations</li>
+      <li>End-to-end error analysis for Agentic AI Systems</li>
+      <li>Live Q&amp;A with the instructors</li>
+    </ul>
+
+    <div class="course-block">
+      <div class="course-label">Now Enrolling</div>
+      <h3>Building <span>AI Agents</span> for Enterprise</h3>
+      <div class="course-meta">
+        <div class="meta-item"><strong>6 weeks</strong>Live online</div>
+        <div class="meta-item"><strong>Starts 13th June 2026</strong>Next cohort</div>
+        <div class="meta-item"><strong>&#8377;50,000</strong>Per seat</div>
+      </div>
+      <p>Design, develop, and deploy production-grade AI agent systems. Covers architecture patterns, RAG, tool use, multi-agent workflows, and evaluation - with live sessions and hands-on projects.</p>
+      <a href="https://beyondvectors.com" style="background:#1a73e8; color:white; padding:12px 28px; border-radius:10px; font-size:0.95rem; font-weight:600; text-decoration:none; display:inline-block; transition:opacity 0.2s;">Learn More &rarr;</a>
+    </div>
+    <h2 style="margin-top: 48px; margin-bottom: 20px;">Your instructors</h2>
+    <div class="instructor-cards">
+      <div class="instructor-card">
+        <h3>Abhijith Neerkaje</h3>
+        <div class="role">Data Science Leader · 20+ years experience</div>
+        <p>Abhijith currently heads Data Science and Analytics at Falabella India, leading a team building ML-powered search, recommendations, and seller-experience products for their e-commerce platform.</p>
+        <p>Previously Senior Director of Data Sciences at Target, driving pricing, supply chain, and merchandising decisions through advanced analytics.</p>
+        <p>B.E. from PESIT · M.Tech from IISc · MS from MIT (Tata Fellow, MIT Clean Energy Prize winner, 2013)</p>
+      </div>
+      <div class="instructor-card">
+        <h3>Ajay Shenoy</h3>
+        <div class="role">AI/ML Consultant &amp; Trainer · 14 years experience</div>
+        <p>Ajay works as a consultant and trainer in AI/ML. He has previously worked at Target, Harman, AlphaICs, and Scaler in the AI/ML field.</p>
+        <p>B.Tech from NITK Surathkal · Ph.D from IISc Bangalore. Has published 10 articles in leading venues including IEEE Transactions on Signal Processing.</p>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2026 Beyond Vectors - <a href="https://beyondvectors.com" style="color:inherit;">beyondvectors.com</a>
+  </footer>
+
+</body>
+</html>

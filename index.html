@@ -134,7 +134,7 @@
     .hero {
       background: linear-gradient(135deg, #0f172a 0%, #1e293b 60%, #1a2744 100%);
       color: white;
-      padding: 80px 24px 72px;
+      padding: 44px 24px 40px;
       text-align: center;
     }
     .hero .badge {
@@ -183,18 +183,18 @@
     }
     .btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
     .btn-secondary {
-      background: rgba(255,255,255,0.1);
-      border: 1px solid rgba(255,255,255,0.25);
+      background: var(--blue);
+      border: 1px solid var(--blue);
       color: white;
       padding: 14px 28px;
       border-radius: 10px;
       font-size: 1rem;
       font-weight: 600;
       text-decoration: none;
-      transition: background 0.2s;
+      transition: opacity 0.2s;
       display: inline-block;
     }
-    .btn-secondary:hover { background: rgba(255,255,255,0.18); }
+    .btn-secondary:hover { opacity: 0.88; }
 
     /* ── CONTAINER ── */
     .container {
@@ -204,7 +204,7 @@
     }
 
     /* ── SECTION ── */
-    section { padding: 72px 24px; }
+    section { padding: 40px 24px; }
     section:nth-child(even) { background: white; }
     .section-label {
       font-size: 0.75rem;
@@ -323,7 +323,8 @@
       font-size: 0.95rem;
       font-weight: 600;
       text-decoration: none;
-      display: inline-block;
+      display: block;
+      text-align: center;
       transition: opacity 0.2s;
     }
     .cta-coupon:hover { opacity: 0.88; }
@@ -534,18 +535,6 @@
 </div>
 
 <!-- KEY DETAILS -->
-<section id="details" style="padding: 40px 24px;">
-  <div class="container">
-    <div class="section-title">What you will get</div>
-    <div class="details-grid">
-      <div class="detail-card"><div class="icon">🏗️</div><p><strong>Design → Develop → Deploy</strong> for production agent systems</p></div>
-      <div class="detail-card"><div class="icon">⚖️</div><p>Trade-offs in <strong>model selection</strong> &amp; pipelines</p></div>
-      <div class="detail-card"><div class="icon">🎥</div><p><strong>Lifetime access</strong> to recordings &amp; community</p></div>
-      <div class="detail-card"><div class="icon">💻</div><p><strong>No prior AI/ML</strong> knowledge needed</p></div>
-    </div>
-  </div>
-</section>
-
 <!-- SCHEDULE + CTA -->
 <section id="schedule">
   <div class="container">
@@ -566,7 +555,7 @@
         <span class="label">Evening Batch</span>
         <span class="value"><strong>8:00 PM – 10:00 PM IST</strong> &nbsp;· Saturdays &amp; Sundays</span>
       </div>
-      <p class="schedule-note">You'll receive invites to <strong>both</strong> batches — choose which one to join each day.</p>
+      <p class="schedule-note">You'll receive invites to <strong>both</strong> batches:choose which one to join each day.</p>
 
       <div class="price-row">
         <div>
@@ -600,17 +589,15 @@
         </div>
         <div class="week-body">
           <p>Learn the foundations of AI agents and understand the enterprise landscape.</p>
-          <div class="sub-label">Topics</div>
+          <div class="sub-label">Classes</div>
           <ul>
-            <li>Gen AI Fundamentals and Introduction to Agents in Enterprise</li>
-            <li>Tools Landscape</li>
-            <li>Prompt Engineering and Optimization</li>
-            <li>Building workflow agents</li>
+            <li>Class 1: Introduction to Agentic AI</li>
+            <li>Class 2: Prompt Engineering and Designing Agents</li>
           </ul>
           <div class="sub-label">Tools &amp; Frameworks</div>
           <div class="tools-row">
             <span class="tag">LangChain</span>
-            <span class="tag">Groq</span>
+            <span class="tag">Langgraph</span>
             <span class="tag">OpenAI</span>
             <span class="tag">DSPy</span>
           </div>
@@ -624,11 +611,11 @@
           <span class="week-chevron">▼</span>
         </div>
         <div class="week-body">
-          <p>Advanced retrieval systems and tool engineering for enterprise integration.</p>
-          <div class="sub-label">Topics</div>
+          <p>Build and evaluate retrieval systems that ground agents in enterprise knowledge.</p>
+          <div class="sub-label">Classes</div>
           <ul>
-            <li>Retrieval Augmented Generation (RAG)</li>
-            <li>Advanced RAG and retrieval evaluations</li>
+            <li>Class 3: Embeddings and RAG</li>
+            <li>Class 4: RAG Design</li>
           </ul>
           <div class="sub-label">Tools &amp; Frameworks</div>
           <div class="tools-row">
@@ -641,43 +628,19 @@
       <div class="week-card">
         <div class="week-header" onclick="toggle(this)">
           <span class="week-num">Week 3</span>
-          <span class="week-title">Agent Intelligence</span>
+          <span class="week-title">Tool Engineering &amp; Memory</span>
           <span class="week-chevron">▼</span>
         </div>
         <div class="week-body">
-          <p>Intelligent agent evaluation and reasoning patterns.</p>
-          <div class="sub-label">Topics</div>
+          <p>Equip agents with tools, external integrations, and persistent memory.</p>
+          <div class="sub-label">Classes</div>
           <ul>
-            <li>Tools Engineering</li>
-            <li>MCP Protocol</li>
-            <li>Agent Evaluations</li>
+            <li>Class 5: Tool Engineering</li>
+            <li>Class 6: Memory in Agents, Model Context Protocol</li>
           </ul>
           <div class="sub-label">Tools &amp; Frameworks</div>
           <div class="tools-row">
             <span class="tag">MCP</span>
-            <span class="tag">Lovable</span>
-            <span class="tag">Langgraph</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="week-card">
-        <div class="week-header" onclick="toggle(this)">
-          <span class="week-num">Week 4</span>
-          <span class="week-title">Memory &amp; Optimization</span>
-          <span class="week-chevron">▼</span>
-        </div>
-        <div class="week-body">
-          <p>Build agents with sophisticated memory systems and optimize for production performance.</p>
-          <div class="sub-label">Topics</div>
-          <ul>
-            <li>LLM as a Judge</li>
-            <li>Agentic RAG</li>
-            <li>Long and Short Term Memory in Agents</li>
-          </ul>
-          <div class="sub-label">Tools &amp; Frameworks</div>
-          <div class="tools-row">
-            <span class="tag">Langgraph</span>
             <span class="tag">LangMem</span>
             <span class="tag">Redis</span>
           </div>
@@ -686,22 +649,43 @@
 
       <div class="week-card">
         <div class="week-header" onclick="toggle(this)">
-          <span class="week-num">Week 5</span>
-          <span class="week-title">Production Deployment</span>
+          <span class="week-num">Week 4</span>
+          <span class="week-title">Evaluating Agentic AI Systems</span>
           <span class="week-chevron">▼</span>
         </div>
         <div class="week-body">
-          <p>Deploy, monitor, and maintain AI agents in production enterprise environments.</p>
-          <div class="sub-label">Topics</div>
+          <p>Systematically evaluate agent quality and build complex workflows with LangGraph.</p>
+          <div class="sub-label">Classes</div>
           <ul>
-            <li>Inference Optimization &amp; Caching Strategies</li>
-            <li>Observability &amp; Guardrails</li>
+            <li>Class 7: Evaluating your Agent</li>
+            <li>Class 8: Error Analysis, LLM as Judge</li>
           </ul>
           <div class="sub-label">Tools &amp; Frameworks</div>
           <div class="tools-row">
             <span class="tag">Langsmith</span>
             <span class="tag">Opik</span>
-            <span class="tag">NVIDIA Nemo</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="week-card">
+        <div class="week-header" onclick="toggle(this)">
+          <span class="week-num">Week 5</span>
+          <span class="week-title">Agentic RAG &amp; Inference Optimization</span>
+          <span class="week-chevron">▼</span>
+        </div>
+        <div class="week-body">
+          <p>Combine agentic reasoning with advanced retrieval and optimize for production performance.</p>
+          <div class="sub-label">Classes</div>
+          <ul>
+            <li>Class 9: Agentic RAG + Finetuning</li>
+            <li>Class 10: Inference Optimization</li>
+          </ul>
+          <div class="sub-label">Tools &amp; Frameworks</div>
+          <div class="tools-row">
+            <span class="tag">Langgraph</span>
+            <span class="tag">NVIDIA NeMo</span>
+            <span class="tag">vLLM</span>
           </div>
         </div>
       </div>
@@ -709,16 +693,15 @@
       <div class="week-card">
         <div class="week-header" onclick="toggle(this)">
           <span class="week-num">Week 6</span>
-          <span class="week-title">Multi-Agent Systems</span>
+          <span class="week-title">Production &amp; Multi-Agent Systems</span>
           <span class="week-chevron">▼</span>
         </div>
         <div class="week-body">
-          <p>Advanced multi-agent architectures and strategic implementation.</p>
-          <div class="sub-label">Topics</div>
+          <p>Ship agents to production with guardrails, observability, and multi-agent coordination.</p>
+          <div class="sub-label">Classes</div>
           <ul>
-            <li>Deploying Agents to Azure</li>
-            <li>Multi Agent Architectures and A2A Protocol</li>
-            <li>Strategic Choices and Change Management</li>
+            <li>Class 11: Observability and Guardrails</li>
+            <li>Class 12: Case Study: Inventory Planner; A2A Protocol, Deployment, Change Management</li>
           </ul>
           <div class="sub-label">Tools &amp; Frameworks</div>
           <div class="tools-row">
@@ -732,9 +715,22 @@
     </div>
 
     <!-- CTA repeat -->
-    <div style="margin-top: 40px; display: flex; flex-direction: column; gap: 12px; max-width: 520px;">
+    <div style="margin-top: 40px; display: flex; flex-direction: column; gap: 12px;">
       <a class="cta-enroll" href="https://rzp.io/rzp/UaS4txA">Enroll Now &nbsp;→</a>
       <a class="cta-coupon" href="https://docs.google.com/forms/d/e/1FAIpQLSciM-92801oPbkqSzdWg56rEMRCn95dy44EXvRmyfZcAYoPKQ/viewform?usp=header">🎟 Get discount coupons</a>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT YOU WILL GET -->
+<section id="details">
+  <div class="container">
+    <div class="section-title">What you will get</div>
+    <div class="details-grid">
+      <div class="detail-card"><div class="icon">🏗️</div><p><strong>Design → Develop → Deploy</strong> for production agent systems</p></div>
+      <div class="detail-card"><div class="icon">⚖️</div><p>Trade-offs in <strong>model selection</strong> &amp; pipelines</p></div>
+      <div class="detail-card"><div class="icon">🎥</div><p><strong>Lifetime access</strong> to recordings &amp; community</p></div>
+      <div class="detail-card"><div class="icon">💻</div><p><strong>No prior AI/ML</strong> knowledge needed</p></div>
     </div>
   </div>
 </section>
