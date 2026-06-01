@@ -518,7 +518,7 @@ from google.colab import userdata
 groq_api_key = userdata.get('GROQ_API_KEY')
 client = Groq(api_key=groq_api_key)
 response = client.chat.completions.create(
-    model="llama3-8b-8192",
+    model="llama-3.3-70b-versatile",
     messages=[{"role": "user", "content": "Say hello world"}]
 )
 print(response.choices[0].message.content)</code></pre>
@@ -604,7 +604,7 @@ from groq import Groq
 load_dotenv()
 client = Groq()
 response = client.chat.completions.create(
-    model="llama3-8b-8192",
+    model="llama-3.3-70b-versatile",
     messages=[{"role": "user", "content": "Say hello world"}]
 )
 print(response.choices[0].message.content)</code></pre>
