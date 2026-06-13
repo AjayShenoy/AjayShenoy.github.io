@@ -546,19 +546,20 @@ client = Groq(api_key=groq_api_key)
 system_message = "You are a helpful assistant"
 
 def chat(message, history):
-    history = [{"role": msg["role"], "content": msg["content"]} for msg in history]
-    messages = (
-        [{"role": "system", "content": system_message}]
-        + history
-        + [{"role": "user", "content": message}]
-    )
+    messages = [{"role": "system", "content": system_message}]
+    for msg in history:
+        content = msg["content"]
+        if isinstance(content, list):
+            content = " ".join(block.get("text", "") for block in content if block.get("type") == "text")
+        messages.append({"role": msg["role"], "content": content})
+    messages.append({"role": "user", "content": message})
     stream = client.chat.completions.create(model=MODEL, messages=messages, stream=True)
     response = ""
     for chunk in stream:
         response += chunk.choices[0].delta.content or ""
         yield response
 
-gr.ChatInterface(fn=chat, type="messages").launch()</code></pre>
+gr.ChatInterface(fn=chat).launch()</code></pre>
             <p>Colab will print a public URL and may embed the chatbot directly in the notebook.</p>
             <img class="step-img" src="_images/chatbot.png" alt="Chatbot running in Colab" />
           </div>
@@ -658,7 +659,7 @@ def chat(message, history):
         response += chunk.choices[0].delta.content or ""
         yield response
 
-gr.ChatInterface(fn=chat, type="messages").launch()</code></pre>
+gr.ChatInterface(fn=chat).launch()</code></pre>
             <p>Run it:</p>
             <pre><code>python app_chatbot.py</code></pre>
             <p>Open the local URL printed in your terminal (e.g. <code>http://127.0.0.1:7860</code>) in your browser.</p>
