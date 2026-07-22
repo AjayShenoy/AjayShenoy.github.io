@@ -819,21 +819,14 @@
     <button class="marquee-btn prev" aria-label="Previous testimonial">&#8249;</button>
     <button class="marquee-btn next" aria-label="Next testimonial">&#8250;</button>
     <div class="marquee-track">
-      <img class="testimonial-img" src="_images/testimonial-1.png" alt="Testimonial" />
-      <img class="testimonial-img" src="_images/testimonial-2.png" alt="Testimonial" />
-      <img class="testimonial-img" src="_images/testimonial-3.png" alt="Testimonial" />
-      <img class="testimonial-img" src="_images/testimonial-4.png" alt="Testimonial" />
-      <img class="testimonial-img" src="_images/testimonial-5.png" alt="Testimonial" />
-      <img class="testimonial-img" src="_images/testimonial-6.png" alt="Testimonial" />
-      <img class="testimonial-img" src="_images/testimonial-7.png" alt="Testimonial" />
-      <!-- Duplicated for seamless loop -->
-      <img class="testimonial-img" src="_images/testimonial-1.png" alt="Testimonial" />
-      <img class="testimonial-img" src="_images/testimonial-2.png" alt="Testimonial" />
-      <img class="testimonial-img" src="_images/testimonial-3.png" alt="Testimonial" />
-      <img class="testimonial-img" src="_images/testimonial-4.png" alt="Testimonial" />
-      <img class="testimonial-img" src="_images/testimonial-5.png" alt="Testimonial" />
-      <img class="testimonial-img" src="_images/testimonial-6.png" alt="Testimonial" />
-      <img class="testimonial-img" src="_images/testimonial-7.png" alt="Testimonial" />
+      <!-- List each image once. JS will duplicate for seamless loop. Missing images auto-skip. -->
+      <img class="testimonial-img" src="_images/testimonial-1.png" alt="Testimonial" onerror="this.remove()" />
+      <img class="testimonial-img" src="_images/testimonial-2.png" alt="Testimonial" onerror="this.remove()" />
+      <img class="testimonial-img" src="_images/testimonial-3.png" alt="Testimonial" onerror="this.remove()" />
+      <img class="testimonial-img" src="_images/testimonial-4.png" alt="Testimonial" onerror="this.remove()" />
+      <img class="testimonial-img" src="_images/testimonial-5.png" alt="Testimonial" onerror="this.remove()" />
+      <img class="testimonial-img" src="_images/testimonial-6.png" alt="Testimonial" onerror="this.remove()" />
+      <img class="testimonial-img" src="_images/testimonial-7.png" alt="Testimonial" onerror="this.remove()" />
     </div>
   </div>
 </section>
@@ -911,9 +904,13 @@
   (function() {
     const wrapper = document.querySelector('.marquee-wrapper');
     const track   = document.querySelector('.marquee-track');
-    const imgs    = track.querySelectorAll('.testimonial-img');
     const prevBtn = wrapper.querySelector('.marquee-btn.prev');
     const nextBtn = wrapper.querySelector('.marquee-btn.next');
+
+    // Clone the image set once so the loop is seamless.
+    // Cloned <img> tags carry the onerror handler, so missing files are removed automatically.
+    Array.from(track.children).forEach(img => track.appendChild(img.cloneNode(true)));
+    const imgs = track.querySelectorAll('.testimonial-img');
 
     let offset = 0;
     let paused = false;
