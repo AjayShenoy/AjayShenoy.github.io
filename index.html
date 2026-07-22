@@ -441,6 +441,81 @@
       margin-bottom: 10px;
     }
 
+    /* ── TESTIMONIALS ── */
+    .testimonials-section {
+      padding: 40px 0;
+      background: var(--bg);
+      overflow: hidden;
+    }
+    .testimonials-section .section-label,
+    .testimonials-section .section-title {
+      padding: 0 24px;
+    }
+    .marquee-wrapper {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      height: 300px;
+      display: flex;
+      align-items: center;
+      margin-top: 28px;
+    }
+    .marquee-track {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      width: max-content;
+      will-change: transform;
+    }
+    .marquee-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255,255,255,0.95);
+      border: 1px solid var(--border);
+      color: var(--dark);
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      font-size: 1.6rem;
+      font-weight: 700;
+      cursor: pointer;
+      z-index: 5;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+      padding: 0 0 3px 0;
+      transition: background 0.2s, box-shadow 0.2s;
+    }
+    .marquee-btn:hover {
+      background: white;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.22);
+    }
+    .marquee-btn:active { background: #f1f5f9; }
+    .marquee-btn.prev { left: 16px; }
+    .marquee-btn.next { right: 16px; }
+    .testimonial-img {
+      flex-shrink: 0;
+      height: 200px;
+      width: auto;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      object-fit: cover;
+      display: block;
+      opacity: 0.5;
+      transform: scale(0.82);
+      transition: transform 0.5s ease, opacity 0.5s ease, box-shadow 0.5s ease;
+      position: relative;
+    }
+    .testimonial-img.active {
+      opacity: 1;
+      transform: scale(1.22);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.18);
+      z-index: 2;
+    }
+
     /* ── FOOTER ── */
     footer {
       background: var(--dark);
@@ -508,6 +583,7 @@
     <li><a href="#details">Details</a></li>
     <li><a href="#schedule">Schedule</a></li>
     <li><a href="#curriculum">Curriculum</a></li>
+    <li><a href="#testimonials">Testimonials</a></li>
     <li><a href="#instructors">Instructors</a></li>
   </ul>
   <a class="enroll-btn" href="https://rzp.io/rzp/UaS4txA">Enroll Now →</a>
@@ -735,6 +811,33 @@
   </div>
 </section>
 
+<!-- TESTIMONIALS -->
+<section class="testimonials-section" id="testimonials">
+  <div class="section-label">What our learners have to say</div>
+  <div class="section-title">Testimonials</div>
+  <div class="marquee-wrapper">
+    <button class="marquee-btn prev" aria-label="Previous testimonial">&#8249;</button>
+    <button class="marquee-btn next" aria-label="Next testimonial">&#8250;</button>
+    <div class="marquee-track">
+      <img class="testimonial-img" src="_images/testimonial-1.png" alt="Testimonial" />
+      <img class="testimonial-img" src="_images/testimonial-2.png" alt="Testimonial" />
+      <img class="testimonial-img" src="_images/testimonial-3.png" alt="Testimonial" />
+      <img class="testimonial-img" src="_images/testimonial-4.png" alt="Testimonial" />
+      <img class="testimonial-img" src="_images/testimonial-5.png" alt="Testimonial" />
+      <img class="testimonial-img" src="_images/testimonial-6.png" alt="Testimonial" />
+      <img class="testimonial-img" src="_images/testimonial-7.png" alt="Testimonial" />
+      <!-- Duplicated for seamless loop -->
+      <img class="testimonial-img" src="_images/testimonial-1.png" alt="Testimonial" />
+      <img class="testimonial-img" src="_images/testimonial-2.png" alt="Testimonial" />
+      <img class="testimonial-img" src="_images/testimonial-3.png" alt="Testimonial" />
+      <img class="testimonial-img" src="_images/testimonial-4.png" alt="Testimonial" />
+      <img class="testimonial-img" src="_images/testimonial-5.png" alt="Testimonial" />
+      <img class="testimonial-img" src="_images/testimonial-6.png" alt="Testimonial" />
+      <img class="testimonial-img" src="_images/testimonial-7.png" alt="Testimonial" />
+    </div>
+  </div>
+</section>
+
 <!-- INSTRUCTORS -->
 <section id="instructors">
   <div class="container">
@@ -803,6 +906,66 @@
     document.getElementById("seconds").innerHTML = seconds;
     
   }, 1000);
+
+  // Testimonial scroll + arrows + center-spotlight
+  (function() {
+    const wrapper = document.querySelector('.marquee-wrapper');
+    const track   = document.querySelector('.marquee-track');
+    const imgs    = track.querySelectorAll('.testimonial-img');
+    const prevBtn = wrapper.querySelector('.marquee-btn.prev');
+    const nextBtn = wrapper.querySelector('.marquee-btn.next');
+
+    let offset = 0;
+    let paused = false;
+    let nudgeAnim = null;
+    let lastTime = performance.now();
+    const speed = 22; // px per second (auto-scroll)
+
+    wrapper.addEventListener('mouseenter', () => paused = true);
+    wrapper.addEventListener('mouseleave', () => paused = false);
+
+    function nudge(delta) {
+      const startOffset = nudgeAnim ? offset : offset;
+      nudgeAnim = { startOffset, delta, startTime: performance.now(), duration: 550 };
+    }
+    prevBtn.addEventListener('click', () => nudge(-320));
+    nextBtn.addEventListener('click', () => nudge(320));
+
+    function loop(now) {
+      const dt = (now - lastTime) / 1000;
+      lastTime = now;
+
+      if (nudgeAnim) {
+        const t = Math.min(1, (now - nudgeAnim.startTime) / nudgeAnim.duration);
+        const eased = 1 - Math.pow(1 - t, 3); // ease-out cubic
+        offset = nudgeAnim.startOffset + nudgeAnim.delta * eased;
+        if (t >= 1) nudgeAnim = null;
+      } else if (!paused) {
+        offset += speed * dt;
+      }
+
+      const halfWidth = track.scrollWidth / 2;
+      if (halfWidth > 0) {
+        while (offset >= halfWidth) offset -= halfWidth;
+        while (offset < 0) offset += halfWidth;
+      }
+      track.style.transform = `translateX(${-offset}px)`;
+
+      // Spotlight
+      const wRect = wrapper.getBoundingClientRect();
+      const centerX = wRect.left + wRect.width / 2;
+      let closest = null, minDist = Infinity;
+      imgs.forEach(img => {
+        const r = img.getBoundingClientRect();
+        const dist = Math.abs((r.left + r.width / 2) - centerX);
+        if (dist < minDist) { minDist = dist; closest = img; }
+      });
+      imgs.forEach(img => img.classList.toggle('active', img === closest));
+
+      requestAnimationFrame(loop);
+    }
+    requestAnimationFrame(loop);
+  })();
 </script>
 
 </body>
