@@ -451,6 +451,10 @@
     .testimonials-section .section-title {
       padding: 0 24px;
     }
+    .testimonials-section > .section-title,
+    .b2b-block .section-title {
+      font-size: clamp(1.3rem, 2.4vw, 1.65rem);
+    }
     .marquee-wrapper {
       position: relative;
       width: 100%;
@@ -514,6 +518,47 @@
       transform: scale(1.22);
       box-shadow: 0 12px 40px rgba(0,0,0,0.18);
       z-index: 2;
+    }
+
+    /* ── B2B LOGOS ── */
+    .b2b-block {
+      margin-top: 120px;
+      padding-top: 40px;
+      border-top: 1px solid var(--border);
+    }
+    .b2b-block .section-title {
+      padding: 0 24px;
+      margin-bottom: 8px;
+    }
+    .logos-marquee-wrapper {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      height: 110px;
+      display: flex;
+      align-items: center;
+      margin-top: 24px;
+    }
+    .logos-marquee-track {
+      display: flex;
+      align-items: center;
+      gap: 64px;
+      width: max-content;
+      will-change: transform;
+      padding: 0 32px;
+    }
+    .b2b-logo {
+      flex-shrink: 0;
+      height: 64px;
+      width: auto;
+      display: block;
+      object-fit: contain;
+      opacity: 0.8;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+    .b2b-logo:hover {
+      opacity: 1;
+      transform: scale(1.08);
     }
 
     /* ── FOOTER ── */
@@ -811,26 +856,6 @@
   </div>
 </section>
 
-<!-- TESTIMONIALS -->
-<section class="testimonials-section" id="testimonials">
-  <div class="section-label">What our learners have to say</div>
-  <div class="section-title">Testimonials</div>
-  <div class="marquee-wrapper">
-    <button class="marquee-btn prev" aria-label="Previous testimonial">&#8249;</button>
-    <button class="marquee-btn next" aria-label="Next testimonial">&#8250;</button>
-    <div class="marquee-track">
-      <!-- List each image once. JS will duplicate for seamless loop. Missing images auto-skip. -->
-      <img class="testimonial-img" src="_images/testimonial-1.png" alt="Testimonial" onerror="this.remove()" />
-      <img class="testimonial-img" src="_images/testimonial-2.png" alt="Testimonial" onerror="this.remove()" />
-      <img class="testimonial-img" src="_images/testimonial-3.png" alt="Testimonial" onerror="this.remove()" />
-      <img class="testimonial-img" src="_images/testimonial-4.png" alt="Testimonial" onerror="this.remove()" />
-      <img class="testimonial-img" src="_images/testimonial-5.png" alt="Testimonial" onerror="this.remove()" />
-      <img class="testimonial-img" src="_images/testimonial-6.png" alt="Testimonial" onerror="this.remove()" />
-      <img class="testimonial-img" src="_images/testimonial-7.png" alt="Testimonial" onerror="this.remove()" />
-    </div>
-  </div>
-</section>
-
 <!-- INSTRUCTORS -->
 <section id="instructors">
   <div class="container">
@@ -853,6 +878,43 @@
         <p>B.Tech from NITK Surathkal · Ph.D from IISc Bangalore. Has published 10 articles in leading venues including IEEE Transactions on Signal Processing.</p>
       </div>
 
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials-section" id="testimonials">
+  <div class="section-label">What our learners have to say</div>
+  <div class="section-title">Testimonials</div>
+  <div class="marquee-wrapper">
+    <button class="marquee-btn prev" aria-label="Previous testimonial">&#8249;</button>
+    <button class="marquee-btn next" aria-label="Next testimonial">&#8250;</button>
+    <div class="marquee-track">
+      <!-- List each image once. JS will duplicate for seamless loop. Missing images auto-skip. -->
+      <img class="testimonial-img" src="_images/testimonial-1.png" alt="Testimonial" onerror="this.remove()" />
+      <img class="testimonial-img" src="_images/testimonial-2.png" alt="Testimonial" onerror="this.remove()" />
+      <img class="testimonial-img" src="_images/testimonial-3.png" alt="Testimonial" onerror="this.remove()" />
+      <img class="testimonial-img" src="_images/testimonial-4.png" alt="Testimonial" onerror="this.remove()" />
+      <img class="testimonial-img" src="_images/testimonial-5.png" alt="Testimonial" onerror="this.remove()" />
+      <img class="testimonial-img" src="_images/testimonial-6.png" alt="Testimonial" onerror="this.remove()" />
+      <img class="testimonial-img" src="_images/testimonial-7.png" alt="Testimonial" onerror="this.remove()" />
+    </div>
+  </div>
+
+  <div class="b2b-block">
+    <div class="section-title">Our B2B Engagements</div>
+    <div class="logos-marquee-wrapper">
+      <div class="logos-marquee-track">
+        <!-- Add/remove logo files in _images/b2b/. Missing files auto-skip. -->
+        <img class="b2b-logo" src="_images/b2b/microsoft.png" alt="Microsoft" onerror="this.remove()" />
+        <img class="b2b-logo" src="_images/b2b/target.png" alt="Target" onerror="this.remove()" />
+        <img class="b2b-logo" src="_images/b2b/o9.png" alt="o9 Solutions" onerror="this.remove()" />
+        <img class="b2b-logo" src="_images/b2b/dataweave.png" alt="DataWeave" onerror="this.remove()" />
+        <img class="b2b-logo" src="_images/b2b/tata-digital.png" alt="Tata Digital" onerror="this.remove()" />
+        <img class="b2b-logo" src="_images/b2b/tata-chem.png" alt="Tata Chemicals" onerror="this.remove()" />
+        <img class="b2b-logo" src="_images/b2b/rallis-tata.png" alt="Rallis (Tata)" onerror="this.remove()" />
+        <img class="b2b-logo" src="_images/b2b/trent.png" alt="Trent" onerror="this.remove()" />
+      </div>
     </div>
   </div>
 </section>
@@ -937,7 +999,7 @@
         const eased = 1 - Math.pow(1 - t, 3); // ease-out cubic
         offset = nudgeAnim.startOffset + nudgeAnim.delta * eased;
         if (t >= 1) nudgeAnim = null;
-      } else if (!paused) {
+      } else if (!paused && !wrapper.classList.contains('offscreen')) {
         offset += speed * dt;
       }
 
@@ -963,6 +1025,60 @@
     }
     requestAnimationFrame(loop);
   })();
+
+  // B2B logos marquee (auto-scroll + hover-pause)
+  (function() {
+    const wrapper = document.querySelector('.logos-marquee-wrapper');
+    if (!wrapper) return;
+    const track = wrapper.querySelector('.logos-marquee-track');
+
+    Array.from(track.children).forEach(el => track.appendChild(el.cloneNode(true)));
+
+    let offset = 0, paused = false;
+    let lastTime = performance.now();
+    const speed = 35; // px per second
+
+    wrapper.addEventListener('mouseenter', () => paused = true);
+    wrapper.addEventListener('mouseleave', () => paused = false);
+
+    function loop(now) {
+      const dt = (now - lastTime) / 1000;
+      lastTime = now;
+      if (!paused && !wrapper.classList.contains('offscreen')) offset += speed * dt;
+      const halfWidth = track.scrollWidth / 2;
+      if (halfWidth > 0) {
+        while (offset >= halfWidth) offset -= halfWidth;
+      }
+      track.style.transform = `translateX(${-offset}px)`;
+      requestAnimationFrame(loop);
+    }
+    requestAnimationFrame(loop);
+  })();
+
+  // Marquee visibility management:
+  // - Pause a marquee that's scrolled out of view
+  // - When B2B is visible, ALSO pause testimonials (B2B wins the mutex)
+  if ('IntersectionObserver' in window) {
+    const testWrapper = document.querySelector('.marquee-wrapper');
+    const b2bWrapper  = document.querySelector('.logos-marquee-wrapper');
+    const visibility  = new WeakMap();
+
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => visibility.set(e.target, e.isIntersecting));
+
+      const testVisible = visibility.get(testWrapper);
+      const b2bVisible  = visibility.get(b2bWrapper);
+
+      if (testWrapper) {
+        testWrapper.classList.toggle('offscreen', !testVisible || b2bVisible);
+      }
+      if (b2bWrapper) {
+        b2bWrapper.classList.toggle('offscreen', !b2bVisible);
+      }
+    }, { threshold: 0.35 });
+
+    [testWrapper, b2bWrapper].filter(Boolean).forEach(el => obs.observe(el));
+  }
 </script>
 
 </body>
