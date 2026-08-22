@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LLM Output Control and Decoding Strategies | Beyond Vectors</title>
+
+  <meta name="description" content="How a language model turns one forward pass into text: logits, the decode step, and the autoregressive loop — greedy, sampling, and beam search." />
+  <link rel="canonical" href="https://beyondvectors.com/share/decoding.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://beyondvectors.com/share/decoding.html" />
+  <meta property="og:title" content="LLM Output Control and Decoding Strategies" />
+  <meta property="og:description" content="How a language model turns one forward pass into text: logits, the decode step, and the autoregressive loop — greedy, sampling, and beam search." />
+  <meta property="og:image" content="https://beyondvectors.com/_images/og_decoding.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="627" />
+  <meta property="og:image:alt" content="Diagram: prompt to Transformer to logits to decode step to one token, looping back to the prompt." />
+  <meta property="og:site_name" content="Beyond Vectors" />
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="LLM Output Control and Decoding Strategies" />
+  <meta name="twitter:description" content="How a language model turns one forward pass into text: logits, the decode step, and the autoregressive loop." />
+  <meta name="twitter:image" content="https://beyondvectors.com/_images/og_decoding.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --red: #D13B56;
+      --slide: #1e1e1e;
+      --bg: #f8fafc;
+      --dark: #0f172a;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      --white: #ffffff;
+      --radius: 12px;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--dark);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .wrap {
+      width: 100%;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 48px 24px 64px;
+      flex: 1;
+    }
+
+    header { margin-bottom: 28px; }
+
+    .eyebrow {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 10px;
+    }
+
+    h1 {
+      font-size: clamp(26px, 4vw, 38px);
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: -.02em;
+      margin-bottom: 12px;
+    }
+
+    .lede {
+      font-size: 17px;
+      color: var(--muted);
+      max-width: 62ch;
+    }
+
+    figure {
+      background: var(--slide);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: 0 1px 3px rgba(15, 23, 42, .1), 0 12px 32px rgba(15, 23, 42, .08);
+    }
+
+    figure img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .notes {
+      margin-top: 36px;
+      display: grid;
+      gap: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    }
+
+    .note {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px 22px;
+    }
+
+    .note h2 {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .note p {
+      font-size: 15px;
+      color: var(--muted);
+    }
+
+    code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: .92em;
+      background: #eef2f7;
+      padding: 1px 5px;
+      border-radius: 4px;
+      color: var(--dark);
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 24px;
+      text-align: center;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    footer a { color: var(--red); text-decoration: none; font-weight: 500; }
+    footer a:hover { text-decoration: underline; }
+
+    @media (max-width: 640px) {
+      .wrap { padding: 32px 16px 48px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="eyebrow">Beyond Vectors</div>
+      <h1>LLM Output Control and Decoding Strategies</h1>
+      <p class="lede">
+        A language model runs one forward pass and produces logits — one raw score per
+        token in the vocabulary. Everything you think of as "generation" happens after
+        that, in the decode step.
+      </p>
+    </header>
+
+    <figure>
+      <img
+        src="../_images/image_llm_output_and_decoding.png"
+        alt="Diagram of the generation loop: a prompt enters a Transformer in a forward pass, producing a logits vector over a 50k-200k token vocabulary. A decode step (greedy, sampling, or beam search) selects one token, which is appended to the prompt and fed back in — the autoregressive loop."
+        width="2358" height="1380" />
+    </figure>
+
+    <div class="notes">
+      <div class="note">
+        <h2>Logits, not probabilities</h2>
+        <p>The model emits one raw score per vocabulary token — shape <code>[batch, vocab]</code>, with |V| typically 50k to 200k.</p>
+      </div>
+      <div class="note">
+        <h2>The decoder picks one token</h2>
+        <p>Greedy, sampling, or beam search all read the same logits. Swapping the strategy changes the output without touching the model.</p>
+      </div>
+      <div class="note">
+        <h2>Then it loops</h2>
+        <p>The chosen token is appended to the prompt and the whole thing runs again. That loop is the generation.</p>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    From the AI engineering curriculum at <a href="https://beyondvectors.com">Beyond Vectors</a>
+  </footer>
+</body>
+</html>
