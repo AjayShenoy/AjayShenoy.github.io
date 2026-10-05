@@ -518,7 +518,7 @@ from google.colab import userdata
 groq_api_key = userdata.get('GROQ_API_KEY')
 client = Groq(api_key=groq_api_key)
 response = client.chat.completions.create(
-    model="llama-3.3-70b-versatile",
+    model="openai/gpt-oss-120b",
     messages=[{"role": "user", "content": "Say hello world"}]
 )
 print(response.choices[0].message.content)</code></pre>
@@ -541,7 +541,7 @@ from groq import Groq
 from google.colab import userdata
 
 groq_api_key = userdata.get('GROQ_API_KEY')
-MODEL = "llama-3.3-70b-versatile"
+MODEL = "openai/gpt-oss-120b"
 client = Groq(api_key=groq_api_key)
 system_message = "You are a helpful assistant"
 
@@ -605,7 +605,7 @@ from groq import Groq
 load_dotenv()
 client = Groq()
 response = client.chat.completions.create(
-    model="llama-3.3-70b-versatile",
+    model="openai/gpt-oss-120b",
     messages=[{"role": "user", "content": "Say hello world"}]
 )
 print(response.choices[0].message.content)</code></pre>
@@ -642,7 +642,7 @@ import gradio as gr
 from groq import Groq
 
 load_dotenv()
-MODEL = "llama-3.3-70b-versatile"
+MODEL = "openai/gpt-oss-120b"
 client = Groq()
 system_message = "You are a helpful assistant"
 
@@ -676,7 +676,8 @@ gr.ChatInterface(fn=chat).launch()</code></pre>
         <h3>Building <span>AI Agents</span> for Enterprise</h3>
         <div class="course-meta">
           <div class="meta-item"><strong>6 weeks</strong>Live online</div>
-          <div class="meta-item"><strong>Starts 13th June 2026</strong>Next cohort</div>
+          <div class="meta-item"><strong>Starts 10th October 2026</strong>Next cohort</div>
+          <div class="meta-item"><strong>Sat &amp; Sun</strong>8–10 AM or 8–10 PM IST</div>
           <div class="meta-item"><strong>&#8377;50,000</strong>Per seat</div>
         </div>
         <p>Design, develop, and deploy production-grade AI agent systems. Covers RAG, tool use, multi-agent workflows, and evaluation — with live sessions and hands-on projects.</p>
