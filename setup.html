@@ -467,8 +467,8 @@
           <div class="step-body">
             <div class="substep">
               <p>Visit <a href="https://colab.research.google.com" target="_blank">Google Colab</a> and sign in with your Google account.</p>
-              <p>Click <code>File</code> → <code>New notebook in Drive</code></p>
-              <img class="step-img" src="_images/colab_01.png" alt="New notebook in Drive" />
+              <p>Click the blue <code>+ New notebook</code> button at the top of the page.</p>
+              <img class="step-img" src="_images/colab_01.png" alt="New notebook button in Colab" />
             </div>
             <div class="substep">
               <p>In the first code cell, run this command to install the required packages (the <code>!</code> prefix is required):</p>
@@ -487,35 +487,39 @@
           </div>
           <div class="step-body">
             <div class="substep">
-              <p>Visit the <a href="https://groq.com/" target="_blank">Groq website</a>. Go to <code>Developers</code> → <code>Free API Key</code>.</p>
-              <img class="step-img" src="_images/groq_01.png" alt="Groq developers menu" />
+              <p>Visit the <a href="https://groq.com/" target="_blank">Groq website</a> and click <code>Start Building</code> in the top-right corner.</p>
+              <img class="step-img" src="_images/groq_01.png" alt="Start Building button on groq.com" />
             </div>
             <div class="substep">
-              <p>Sign in with your email.</p>
-              <img class="step-img" src="_images/groq_02.png" alt="Groq sign in" />
+              <p>Create an account or log in. Signing in with Google is the quickest option.</p>
+              <img class="step-img" src="_images/groq_02.png" alt="GroqCloud create account or login" />
             </div>
             <div class="substep">
-              <p>Click <code>Create API Key</code>.</p>
-              <img class="step-img" src="_images/groq_03.png" alt="Create API Key button" />
+              <p>Once logged in, click <code>API Keys</code> in the top navigation bar.</p>
+              <img class="step-img" src="_images/groq_03.png" alt="GroqCloud dashboard with API Keys link" />
             </div>
             <div class="substep">
-              <p>Give it a name (e.g. <code>GenAICourse</code>) and copy the key. Never share this with anyone.</p>
-              <img class="step-img" src="_images/groq_04.png" alt="Copy API key" />
+              <p>Click <code>+ Create API Key</code>.</p>
+              <img class="step-img" src="_images/groq_04.png" alt="Create API Key button" />
             </div>
             <div class="substep">
-              <p>Back in your Colab notebook, click the key icon in the left sidebar and then <code>Add new secret</code>.</p>
-              <img class="step-img" src="_images/groq_06.png" alt="Add new secret in Colab" />
+              <p>Give it a display name (e.g. <code>GenAICourse</code>), leave expiration as <code>No expiration</code>, and click <code>Submit</code>.</p>
+              <img class="step-img" src="_images/groq_05.png" alt="Create API Key dialog" />
             </div>
             <div class="substep">
-              <p>Set <code>NAME</code> to <code>GROQ_API_KEY</code> and paste the key as the <code>VALUE</code>. Enable Notebook access.</p>
-              <img class="step-img" src="_images/groq_07.png" alt="Set GROQ_API_KEY secret" />
+              <p>Copy the key that appears. It starts with <code>gsk_</code> and is shown only once. Never share it with anyone.</p>
+            </div>
+            <div class="substep">
+              <p>Back in your Colab notebook, run this in a new cell. A small input box will appear below the cell. Paste your key into it and press <code>Enter</code>.</p>
+              <pre><code>from getpass import getpass
+groq_api_key = getpass("Enter your Groq API key: ")</code></pre>
+              <img class="step-img" src="_images/colab_03.png" alt="Entering the API key with getpass in Colab" />
+              <div class="callout callout-info">The key is hidden as you paste it and is stored only in the <code>groq_api_key</code> variable for this session. You will be asked again each time the runtime restarts.</div>
             </div>
             <div class="substep">
               <p>Verify the setup by running this in a new cell:</p>
               <pre><code>from groq import Groq
-from google.colab import userdata
 
-groq_api_key = userdata.get('GROQ_API_KEY')
 client = Groq(api_key=groq_api_key)
 response = client.chat.completions.create(
     model="openai/gpt-oss-120b",
@@ -538,9 +542,7 @@ print(response.choices[0].message.content)</code></pre>
             <p>Paste this code into a new cell and run it:</p>
             <pre><code>import gradio as gr
 from groq import Groq
-from google.colab import userdata
 
-groq_api_key = userdata.get('GROQ_API_KEY')
 MODEL = "openai/gpt-oss-120b"
 client = Groq(api_key=groq_api_key)
 system_message = "You are a helpful assistant"
