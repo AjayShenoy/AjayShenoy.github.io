@@ -3,324 +3,394 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Designing RAG Systems</title>
-  <meta http-equiv="refresh" content="0; url=https://luma.com/ihskw63o" />
-
-  <meta name="description" content="Join a free live webinar by Beyond Vectors: Designing RAG Systems. Friday 16th October, 9 PM - 10 PM (IST)." />
+  <title>Build your first AI Agent | Beyond Vectors</title>
+  <meta name="description" content="Join a free live webinar by Beyond Vectors: Build your first AI Agent. Sunday 1st November, 11 AM (IST)." />
   <meta name="robots" content="noindex, nofollow" />
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-
+  <link rel="preload" href="fonts/schibsted-grotesk.woff2" as="font" type="font/woff2" crossorigin />
   <style>
+    @font-face {
+      font-family: 'Schibsted Grotesk';
+      font-style: normal;
+      font-weight: 400 800;
+      font-display: swap;
+      src: url('fonts/schibsted-grotesk.woff2') format('woff2');
+    }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --red: #D13B56;
-      --dark: #0f172a;
-      --mid: #1e293b;
-      --muted: #64748b;
-      --border: #e2e8f0;
-      --bg: #f8fafc;
-      --white: #ffffff;
-      --radius: 12px;
+      --ink: #15213d;
+      --ink-2: #3c4a66;
+      --ink-3: #5b6a86;
+      --line: #d9dee8;
+      --line-soft: #e9edf3;
+      --band: #f4f6fa;
+      --paper: #ffffff;
+      --accent: #2d4fd8;
+      --accent-ink: #1f3cb0;
+      --font: 'Schibsted Grotesk', system-ui, sans-serif;
+      --measure: 62ch;
+      --gutter: 24px;
+      --max: 1200px;
     }
 
     html { scroll-behavior: smooth; }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 
     body {
-      font-family: 'Inter', sans-serif;
-      background: var(--bg);
-      color: var(--dark);
-      line-height: 1.6;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
+      font-family: var(--font);
+      background: var(--paper);
+      color: var(--ink);
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
     }
 
-    /* NAV */
-    nav {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: rgba(255,255,255,0.9);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid var(--border);
-      padding: 0 24px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 60px;
+    ::selection { background: var(--accent); color: #fff; }
+    :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+
+    h1, h2, h3 { line-height: 1.1; letter-spacing: -0.02em; text-wrap: balance; }
+    h1 { font-size: clamp(2.2rem, 5.2vw, 3.6rem); font-weight: 800; }
+    h2 { font-size: clamp(1.6rem, 2.8vw, 2.1rem); font-weight: 800; }
+    h3 { font-size: 1.3rem; font-weight: 700; }
+    p { max-width: var(--measure); }
+    a { color: var(--accent-ink); text-underline-offset: 3px; text-decoration-thickness: 1px; }
+    a:hover { color: var(--accent); }
+    strong { font-weight: 600; }
+
+    .wrap { max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter); }
+
+    /* Buttons (Luma's checkout script injects its own button styles; these win) */
+    .btn, a.btn.luma-checkout--button {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      font: inherit; font-weight: 600; font-size: 1rem; line-height: 1.55;
+      padding: 12px 20px; border-radius: 6px; text-decoration: none;
+      border: 1px solid transparent; cursor: pointer; white-space: nowrap;
+      box-shadow: none; text-shadow: none; height: auto;
+      transition: background-color 120ms ease-out, border-color 120ms ease-out, color 120ms ease-out;
     }
-    nav .brand {
-      text-decoration: none;
-      display: flex;
-      align-items: center;
+    .btn-primary, a.btn-primary.luma-checkout--button { background: var(--accent); color: #fff; }
+    .btn-primary:hover, a.btn-primary.luma-checkout--button:hover { background: var(--accent-ink); color: #fff; }
+    .btn-secondary { background: var(--paper); color: var(--ink); border-color: var(--line); }
+    .btn-secondary:hover { border-color: var(--ink-3); color: var(--ink); }
+    .btn-block { width: 100%; }
+    .btn-lg, a.btn-lg.luma-checkout--button { padding: 14px 28px; font-size: 1.05rem; }
+
+    /* Header */
+    .site-header { position: sticky; top: 0; z-index: 50; }
+    .countdown-bar {
+      background: var(--ink); color: #fff;
+      font-size: 0.875rem; font-weight: 500;
+      display: flex; justify-content: center; align-items: center; gap: 6px 14px; flex-wrap: wrap;
+      padding: 7px var(--gutter);
     }
-    nav .brand img {
-      height: 36px;
-      width: auto;
-      border-radius: 4px;
+    .countdown { display: inline-flex; gap: 10px; font-variant-numeric: tabular-nums; }
+    .countdown span { display: inline-flex; align-items: baseline; gap: 2px; }
+    .countdown b { font-weight: 700; color: #c5d0ff; min-width: 2ch; text-align: right; }
+    .countdown small { font-size: 0.75em; color: #c3cbdc; }
+    nav { background: var(--paper); border-bottom: 1px solid var(--line); }
+    nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 60px; gap: 16px; }
+    nav .brand img { height: 32px; width: auto; display: block; border-radius: 3px; }
+    nav ul { display: flex; gap: 24px; list-style: none; }
+    nav ul a { text-decoration: none; color: var(--ink-2); font-size: 0.9rem; font-weight: 500; }
+    nav ul a:hover { color: var(--ink); }
+    nav .btn, nav a.btn.luma-checkout--button { padding: 9px 16px; font-size: 0.9rem; }
+
+    section[id] { scroll-margin-top: 110px; }
+
+    /* Two-column layout: webinar left, sticky course card right */
+    .layout {
+      display: grid; grid-template-columns: minmax(0, 1fr) 320px;
+      gap: 0 48px; align-items: start;
+    }
+    .main-col { min-width: 0; }
+    .main-col .wrap { max-width: none; padding: 0; }
+    .rail { position: sticky; top: 112px; margin-top: 64px; }
+
+    /* Hero */
+    .hero { padding: 64px 0 48px; }
+    .hero-copy > * + * { margin-top: 20px; }
+    .hero-copy .lead { font-size: 1.2rem; color: var(--ink-2); max-width: 46ch; }
+    .hero-actions { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+    .hero-meta { font-size: 0.9rem; color: var(--ink-3); }
+
+    .when { list-style: none; border-top: 1px solid var(--line); margin-top: 28px; }
+    .when li {
+      display: grid; grid-template-columns: 110px minmax(0, 1fr); gap: 4px 24px;
+      padding: 12px 0; border-bottom: 1px solid var(--line-soft); font-size: 0.95rem;
+    }
+    .when .k { color: var(--ink-3); }
+    .when .v { font-weight: 600; }
+
+    @media (prefers-reduced-motion: no-preference) {
+      .hero-copy > *, .facts { animation: rise 400ms cubic-bezier(0.16, 1, 0.3, 1) both; }
+      .facts { animation-delay: 80ms; }
+      @keyframes rise { from { opacity: 0; transform: translateY(8px); } }
     }
 
-    /* HERO */
-    .hero {
-      background: linear-gradient(135deg, #0f172a 0%, #1e293b 60%, #1a2744 100%);
-      color: white;
-      padding: 80px 24px 72px;
-      text-align: center;
-    }
-    .hero .badge {
-      display: inline-block;
-      background: rgba(209,59,86,0.2);
-      color: #f87171;
-      border: 1px solid rgba(209,59,86,0.4);
-      border-radius: 999px;
-      font-size: 0.8rem;
-      font-weight: 600;
-      padding: 4px 14px;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      margin-bottom: 20px;
-    }
-    .hero h1 {
-      font-size: clamp(1.8rem, 4.5vw, 3rem);
-      font-weight: 800;
-      line-height: 1.15;
-      max-width: 720px;
-      margin: 0 auto 20px;
-    }
-    .hero h1 span { color: #f87171; }
-    .hero p {
-      font-size: 1.1rem;
-      color: #ffffff;
-      max-width: 520px;
-      margin: 0 auto 36px;
-    }
+    /* Sections */
+    .section { padding: 56px 0; }
+    .section + .section { border-top: 1px solid var(--line); }
+    .section-head { margin-bottom: 36px; }
+    .section-head p { margin-top: 10px; color: var(--ink-2); }
 
-    /* CTA BUTTON */
-    .btn-primary {
-      background: var(--red);
-      color: white;
-      padding: 14px 40px;
-      border-radius: 10px;
-      font-size: 1rem;
-      font-weight: 700;
-      text-decoration: none;
-      transition: opacity 0.2s, transform 0.15s;
-      display: inline-block;
+    /* Agenda */
+    .agenda { list-style: none; border-top: 1px solid var(--line); counter-reset: item; }
+    .agenda li {
+      display: grid; grid-template-columns: 88px minmax(0, 1fr); gap: 4px 24px;
+      padding: 18px 0; border-bottom: 1px solid var(--line);
     }
-    .btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
+    .agenda li::before {
+      counter-increment: item; content: counter(item, decimal-leading-zero);
+      font-size: 0.85rem; font-weight: 600; color: var(--ink-3); padding-top: 2px;
+    }
+    .agenda li span { display: block; color: var(--ink-2); font-size: 0.95rem; margin-top: 2px; }
+    .agenda-note { margin-top: 16px; font-size: 0.95rem; color: var(--ink-2); }
 
-    /* CONTENT SECTION */
-    .section {
-      max-width: 760px;
-      margin: 0 auto;
-      padding: 64px 24px;
-      flex: 1;
+    /* Course card */
+    .facts {
+      border: 1px solid var(--line); border-radius: 10px; padding: 20px;
+      background: var(--paper);
     }
+    .facts .kicker { font-size: 0.85rem; font-weight: 600; color: var(--ink-3); }
+    .facts h2 { font-size: 1.3rem; font-weight: 800; margin: 6px 0 10px; }
+    .facts .blurb { font-size: 0.92rem; color: var(--ink-2); margin-bottom: 14px; }
+    .facts dl { display: grid; grid-template-columns: 1fr; gap: 2px; font-size: 0.95rem; border-top: 1px solid var(--line-soft); padding-top: 14px; }
+    .facts dt { color: var(--ink-3); font-size: 0.85rem; }
+    .facts dd { font-weight: 600; margin-bottom: 8px; }
+    .facts dd:last-child { margin-bottom: 0; }
+    .facts .price { border-top: 1px solid var(--line-soft); margin-top: 14px; padding-top: 14px; }
+    .facts .price .amount { font-size: 1.9rem; font-weight: 800; letter-spacing: -0.02em; display: block; line-height: 1.1; }
+    .facts .btn { margin-top: 14px; }
+    .facts .more { display: block; text-align: center; margin-top: 12px; font-size: 0.9rem; }
 
-    .section h2 {
-      font-size: 1.5rem;
-      font-weight: 700;
-      margin-bottom: 20px;
-      color: var(--dark);
-    }
+    /* Instructors */
+    .people { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 48px; }
+    .person h3 { font-size: 1.45rem; display: flex; align-items: center; gap: 8px; }
+    .person h3 a { display: inline-flex; color: var(--ink-3); }
+    .person h3 a:hover { color: var(--accent); }
+    .person h3 svg { width: 18px; height: 18px; }
+    .person .role { color: var(--ink-3); font-size: 0.9rem; margin: 4px 0 14px; }
+    .person p { font-size: 0.95rem; color: var(--ink-2); }
+    .person p + p { margin-top: 10px; }
 
-    .points {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      margin-bottom: 48px;
+    /* Fixed bottom bar on phones */
+    .mobile-bar {
+      display: none; position: fixed; left: 0; right: 0; bottom: 0; z-index: 40;
+      background: var(--paper); border-top: 1px solid var(--line);
+      padding: 10px 16px; padding-bottom: calc(10px + env(safe-area-inset-bottom));
+      align-items: center; justify-content: space-between; gap: 12px;
     }
-    .points li {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      font-size: 1rem;
-      color: var(--mid);
-    }
-    .points li::before {
-      content: "✓";
-      color: var(--red);
-      font-weight: 700;
-      flex-shrink: 0;
-      margin-top: 2px;
-    }
+    .mobile-bar .amount { font-weight: 800; font-size: 1.1rem; letter-spacing: -0.02em; display: block; line-height: 1.2; }
+    .mobile-bar .meta { font-size: 0.85rem; color: var(--ink-3); display: block; }
 
-    /* INSTRUCTORS */
-    .instructor-cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-      gap: 24px;
-    }
-    .instructor-card {
-      background: white;
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 28px;
-    }
-    .instructor-card h3 {
-      font-size: 1.15rem;
-      font-weight: 700;
-      margin-bottom: 6px;
-    }
-    .instructor-card .role {
-      font-size: 0.85rem;
-      color: var(--red);
-      font-weight: 600;
-      margin-bottom: 14px;
-    }
-    .instructor-card p {
-      font-size: 0.9rem;
-      color: #475569;
-      line-height: 1.65;
-      margin-bottom: 10px;
-    }
+    /* Closing CTA */
+    .close { background: var(--band); border-top: 1px solid var(--line); padding: 64px 0; }
+    .close .wrap { display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+    .close p { color: var(--ink-2); margin-top: 6px; }
 
-    /* COURSE PROMO */
-    .course-block {
-      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-      border-radius: var(--radius);
-      padding: 36px;
-      color: white;
-    }
-    .course-block .course-label {
-      display: inline-block;
-      background: rgba(209,59,86,0.2);
-      color: #f87171;
-      border: 1px solid rgba(209,59,86,0.4);
-      border-radius: 999px;
-      font-size: 0.75rem;
-      font-weight: 600;
-      padding: 3px 12px;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      margin-bottom: 16px;
-    }
-    .course-block h3 {
-      font-size: 1.35rem;
-      font-weight: 800;
-      margin-bottom: 12px;
-    }
-    .course-block h3 span { color: #f87171; }
-    .course-block .course-meta {
-      display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
-      margin-bottom: 20px;
-    }
-    .course-block .meta-item {
-      font-size: 0.875rem;
-      color: #94a3b8;
-    }
-    .course-block .meta-item strong {
-      color: white;
-      display: block;
-      font-size: 0.95rem;
-    }
-    .course-block p {
-      color: #94a3b8;
-      font-size: 0.95rem;
-      margin-bottom: 24px;
-    }
-    .btn-outline-white {
-      border: 1px solid rgba(255,255,255,0.35);
-      color: white;
-      padding: 12px 28px;
-      border-radius: 10px;
-      font-size: 0.95rem;
-      font-weight: 600;
-      text-decoration: none;
-      transition: background 0.2s;
-      display: inline-block;
-    }
-    .btn-outline-white:hover { background: rgba(255,255,255,0.1); }
+    footer { border-top: 1px solid var(--line); padding: 28px 0; font-size: 0.85rem; color: var(--ink-3); }
+    footer .wrap { display: flex; justify-content: space-between; gap: 12px 24px; flex-wrap: wrap; }
+    footer ul { display: flex; gap: 18px; list-style: none; flex-wrap: wrap; }
+    footer a { color: var(--ink-2); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
 
-    /* FOOTER */
-    footer {
-      text-align: center;
-      padding: 24px;
-      font-size: 0.8rem;
-      color: var(--muted);
-      border-top: 1px solid var(--border);
+    /* Responsive */
+    @media (max-width: 880px) {
+      body { padding-bottom: 72px; }
+      .layout { grid-template-columns: minmax(0, 1fr); }
+      .rail { position: static; margin: 8px 0 56px; }
+      .mobile-bar { display: flex; }
+      .facts dl { grid-template-columns: auto 1fr; gap: 8px 16px; }
+      .facts dt { font-size: 0.95rem; }
+      .facts dd { margin-bottom: 0; }
+      .people { grid-template-columns: 1fr; gap: 32px; }
+      .agenda li { grid-template-columns: 48px minmax(0, 1fr); gap: 4px 16px; }
     }
+    @media (max-width: 640px) {
+      nav ul li:not(:first-child) { display: none; }
+      nav .wrap { gap: 12px; }
+      .hero { padding: 36px 0 28px; }
+      .hero-copy .lead { font-size: 1.05rem; }
+      .when li { grid-template-columns: 80px minmax(0, 1fr); gap: 4px 16px; }
+      .countdown-bar { font-size: 0.8rem; }
+      .countdown-bar .long { display: none; }
+    }
+    @media (min-width: 641px) { .countdown-bar .short { display: none; } }
   </style>
 </head>
 <body>
 
-  <nav>
-    <a href="https://beyondvectors.com" class="brand">
-      <img src="logo.jpeg" alt="Beyond Vectors" />
-    </a>
-  </nav>
-
-  <div class="hero">
-    <div class="badge">Free Webinar</div>
-    <h1><span>Designing RAG Systems</span></h1>
-    <p>A live session on designing retrieval-augmented generation systems — how to chunk, index, retrieve, and rerank so the model answers from the right context, and how to know when it does not.</p>
-    <div style="display:flex; flex-direction:column; align-items:center; gap:14px; margin-bottom:28px;">
-      <div style="display:inline-flex; align-items:center; gap:14px;">
-        <svg width="40" height="44" viewBox="0 0 40 44" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;">
-          <rect x="1" y="6" width="38" height="37" rx="4" fill="white" stroke="#e2e8f0" stroke-width="2"/>
-          <rect x="1" y="6" width="38" height="13" rx="4" fill="#f87171"/>
-          <rect x="1" y="15" width="38" height="4" fill="#f87171"/>
-          <text x="20" y="14" text-anchor="middle" fill="white" font-size="7" font-family="sans-serif" font-weight="700">OCT</text>
-          <text x="20" y="37" text-anchor="middle" fill="#1e293b" font-size="16" font-family="sans-serif" font-weight="700">16</text>
-        </svg>
-        <span style="color:#e2e8f0; font-size:1.6rem; font-weight:700;">Friday, October 16th, 2026</span>
-      </div>
-      <span style="color:#e2e8f0; font-size:1.6rem; font-weight:700;">🕘 &nbsp;9:00 – 10:00 PM IST (GMT+5:30)</span>
-    </div>
-    <a href="https://luma.com/ihskw63o" class="btn-primary">Register &rarr;</a>
+<header class="site-header">
+  <div class="countdown-bar">
+    <span class="long">Free webinar · Sunday, 1st November, 11:00 AM IST</span>
+    <span class="short">Webinar · Sun 1st Nov, 11 AM</span>
+    <span class="countdown" id="countdown-timer" aria-live="off">
+      <span><b id="days">0</b><small>d</small></span>
+      <span><b id="hours">0</b><small>h</small></span>
+      <span><b id="minutes">0</b><small>m</small></span>
+      <span><b id="seconds">0</b><small>s</small></span>
+    </span>
   </div>
-
-  <div class="section">
-    <h2>What we'll cover</h2>
-    <ul class="points">
-      <li>Where RAG fails in practice — bad chunks, weak retrieval, and context that misleads the model</li>
-      <li>Chunking and indexing strategies: size, overlap, metadata, and hybrid (dense + keyword) search</li>
-      <li>Retrieval quality: query rewriting, reranking, and when to use agentic or multi-hop retrieval</li>
-      <li>Evaluating RAG end to end — retrieval metrics, answer faithfulness, and catching regressions</li>
-      <li>Live demos and Q&amp;A with the instructors</li>
-    </ul>
-
-    <h2 style="margin-top: 48px; margin-bottom: 20px;">Explore our upcoming course</h2>
-    <div class="course-block">
-      <div class="course-label">Now Enrolling</div>
-      <h3>Building <span>AI Agents</span> for Enterprise</h3>
-      <div class="course-meta">
-        <div class="meta-item"><strong>6 weeks</strong>Live online</div>
-        <div class="meta-item"><strong>Starts 10th October 2026</strong>Next cohort</div>
-        <div class="meta-item"><strong>&#8377;50,000</strong>Per seat</div>
-      </div>
-      <p>Design, develop, and deploy production-grade AI agent systems. Covers architecture patterns, RAG, tool use, multi-agent workflows, and evaluation - with live sessions and hands-on projects.</p>
-      <a href="https://beyondvectors.com" style="background:#1a73e8; color:white; padding:12px 28px; border-radius:10px; font-size:0.95rem; font-weight:600; text-decoration:none; display:inline-block; transition:opacity 0.2s;">Learn More &rarr;</a>
+  <nav aria-label="Main">
+    <div class="wrap">
+      <a class="brand" href="index.html"><img src="logo.jpeg" alt="Beyond Vectors" /></a>
+      <ul>
+        <li><a href="#agenda">What we'll cover</a></li>
+        <li><a href="#instructors">Instructors</a></li>
+        <li><a href="index.html">The course</a></li>
+      </ul>
+      <a class="btn btn-primary luma-checkout--button" href="https://luma.com/event/evt-FkFMNrUvd58mnUy" data-luma-action="checkout" data-luma-event-id="evt-FkFMNrUvd58mnUy">Register</a>
     </div>
-    <h2 style="margin-top: 48px; margin-bottom: 20px;">Your instructors</h2>
-    <div class="instructor-cards">
-      <div class="instructor-card">
-        <h3>Abhijith Neerkaje &nbsp;<a href="https://www.linkedin.com/in/abhijithneerkaje/" target="_blank" style="display:inline-flex; align-items:center; vertical-align:middle; color:#0a66c2; text-decoration:none;"><svg width="18" height="18" viewBox="0 0 24 24" fill="#0a66c2" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452H17.01v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.588V9h3.305v1.561h.046c.461-.873 1.588-1.794 3.268-1.794 3.494 0 4.14 2.299 4.14 5.293v6.392zM5.337 7.433a1.924 1.924 0 1 1 0-3.849 1.924 1.924 0 0 1 0 3.849zm1.653 13.019H3.683V9h3.307v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.226.792 24 1.771 24h20.451C23.2 24 24 23.226 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a></h3>
-        <div class="role">Data Science Leader · 20+ years experience</div>
-        <p>Abhijith currently heads Data Science and Analytics at Falabella India, leading a team building ML-powered search, recommendations, and seller-experience products for their e-commerce platform.</p>
-        <p>Previously Senior Director of Data Sciences at Target, driving pricing, supply chain, and merchandising decisions through advanced analytics.</p>
+  </nav>
+</header>
+
+<main>
+<div class="wrap layout">
+<div class="main-col">
+
+<!-- HERO -->
+<section class="hero" id="webinar">
+  <div class="wrap">
+    <div class="hero-copy">
+      <h1>Build your first AI Agent</h1>
+      <p class="lead">A hands-on, beginner-friendly session where we build a working AI agent from scratch: an LLM that can reason, call tools, and act on its own.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary btn-lg luma-checkout--button" href="https://luma.com/event/evt-FkFMNrUvd58mnUy" data-luma-action="checkout" data-luma-event-id="evt-FkFMNrUvd58mnUy">Register for free</a>
+        <span class="hero-meta">Registration via Luma. The Zoom link is sent on sign-up.</span>
+      </div>
+      <ul class="when" aria-label="Webinar details">
+        <li><span class="k">Date</span><span class="v">Sunday, 1st November 2026</span></li>
+        <li><span class="k">Time</span><span class="v">11:00 AM IST (GMT+5:30)</span></li>
+        <li><span class="k">Where</span><span class="v">Live on Zoom</span></li>
+        <li><span class="k">Cost</span><span class="v">Free</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- AGENDA -->
+<section class="section" id="agenda">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>What we'll cover</h2>
+    </div>
+    <ol class="agenda">
+      <li><div><strong>How an agent differs from a chatbot</strong><span>What makes an LLM application an agent rather than a question-answer loop.</span></div></li>
+      <li><div><strong>The agent loop</strong><span>Think, pick a tool, act, observe, and repeat until the task is done.</span></div></li>
+      <li><div><strong>Giving the agent tools and memory</strong><span>Letting it call real functions and remember what it has already done.</span></div></li>
+      <li><div><strong>Common pitfalls and how to debug them</strong><span>Where first agents go wrong, and how to find out why.</span></div></li>
+    </ol>
+    <p class="agenda-note">No prior agent experience needed. Basic Python knowledge helps.</p>
+  </div>
+</section>
+
+<!-- INSTRUCTORS -->
+<section class="section" id="instructors">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Instructors</h2>
+    </div>
+    <div class="people">
+      <div class="person">
+        <h3>Abhijith Neerkaje <a href="https://www.linkedin.com/in/abhijithneerkaje/" target="_blank" rel="noopener" aria-label="Abhijith Neerkaje on LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452H17.01v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.588V9h3.305v1.561h.046c.461-.873 1.588-1.794 3.268-1.794 3.494 0 4.14 2.299 4.14 5.293v6.392zM5.337 7.433a1.924 1.924 0 1 1 0-3.849 1.924 1.924 0 0 1 0 3.849zm1.653 13.019H3.683V9h3.307v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.226.792 24 1.771 24h20.451C23.2 24 24 23.226 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a></h3>
+        <div class="role">Co-founder, Beyond Vectors · Data Science Leader · 20+ years experience</div>
+        <p>Abhijith has spent 20+ years building data science and analytics teams. He most recently headed Data Science and Analytics at Falabella India, where his team built ML-powered search, recommendations, and seller-experience products for the e-commerce platform.</p>
+        <p>Before that he was Senior Director of Data Sciences at Target, driving pricing, supply chain, and merchandising decisions through advanced analytics.</p>
         <p>B.E. from PESIT · M.Tech from IISc · MS from MIT (Tata Fellow, MIT Clean Energy Prize winner, 2013)</p>
       </div>
-
-<div class="instructor-card">
-        <h3>Ajay Shenoy &nbsp;<a href="https://www.linkedin.com/in/bastyajayshenoy/" target="_blank" style="display:inline-flex; align-items:center; vertical-align:middle; color:#0a66c2; text-decoration:none;"><svg width="18" height="18" viewBox="0 0 24 24" fill="#0a66c2" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452H17.01v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.588V9h3.305v1.561h.046c.461-.873 1.588-1.794 3.268-1.794 3.494 0 4.14 2.299 4.14 5.293v6.392zM5.337 7.433a1.924 1.924 0 1 1 0-3.849 1.924 1.924 0 0 1 0 3.849zm1.653 13.019H3.683V9h3.307v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.226.792 24 1.771 24h20.451C23.2 24 24 23.226 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a></h3>
-        <div class="role">AI/ML Consultant &amp; Trainer · 14 years experience</div>
-        <p>Ajay works as a consultant and trainer in AI/ML. He has previously worked at Target, Harman, AlphaICs, and Scaler in the AI/ML field.</p>
-        <p>B.Tech from NITK Surathkal · Ph.D from IISc Bangalore. Has published 10 articles in leading venues including IEEE Transactions on Signal Processing.</p>
+      <div class="person">
+        <h3>Ajay Shenoy <a href="https://www.linkedin.com/in/bastyajayshenoy/" target="_blank" rel="noopener" aria-label="Ajay Shenoy on LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452H17.01v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.588V9h3.305v1.561h.046c.461-.873 1.588-1.794 3.268-1.794 3.494 0 4.14 2.299 4.14 5.293v6.392zM5.337 7.433a1.924 1.924 0 1 1 0-3.849 1.924 1.924 0 0 1 0 3.849zm1.653 13.019H3.683V9h3.307v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.226.792 24 1.771 24h20.451C23.2 24 24 23.226 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a></h3>
+        <div class="role">Co-founder, Beyond Vectors · AI/ML Consultant &amp; Trainer · 14 years experience</div>
+        <p>Ajay has worked in the AI/ML field at AlphaICs, Target and Harman after doing his PhD at IISc. He has worked on deep learning inference optimization, retail pricing problems, and driver monitoring systems.</p>
+        <p>He has published 10 articles in leading venues including IEEE Transactions on Signal Processing.</p>
+        <p>In the last 16 years, he has spent time in research labs, startups, and large corporates. He has taught more than 2000 students while at Scaler.</p>
+        <p>B.Tech from NITK Surathkal · Ph.D from IISc Bangalore</p>
       </div>
     </div>
   </div>
+</section>
 
-  <footer>
-    &copy; 2026 Beyond Vectors AI PVT LTD &nbsp;·&nbsp; <a href="https://beyondvectors.com" style="color:inherit;">beyondvectors.com</a> &nbsp;·&nbsp; <a href="mailto:team@beyondvectors.com" style="color:inherit;">team@beyondvectors.com</a>
-  </footer>
+</div><!-- /main-col -->
+
+<aside class="rail" aria-labelledby="course-title">
+  <div class="facts">
+    <p class="kicker">Our cohort course</p>
+    <h2 id="course-title">Building AI Agents for Enterprise</h2>
+    <p class="blurb">Design, develop and deploy production-grade agent systems: prompts, RAG, tools, memory, evals and deployment, with hands-on projects.</p>
+    <dl>
+      <dt>Duration</dt><dd>6 weeks · 12 live classes</dd>
+      <dt>Days</dt><dd>Saturdays &amp; Sundays</dd>
+      <dt>Morning batch</dt><dd>8:00 AM – 10:00 AM IST</dd>
+      <dt>Evening batch</dt><dd>8:00 PM – 10:00 PM IST</dd>
+      <dt>Format</dt><dd>Live online classes</dd>
+    </dl>
+    <div class="price">
+      <span class="amount">₹50,000</span>
+    </div>
+    <a class="btn btn-primary btn-block" href="index.html">See the course</a>
+    <a class="more" href="index.html#curriculum">View the 6-week curriculum</a>
+  </div>
+</aside>
+</div><!-- /layout -->
+
+<!-- CLOSING CTA -->
+<section class="close">
+  <div class="wrap">
+    <div>
+      <h2>Save your seat</h2>
+      <p>Sunday, 1st November 2026 · 11:00 AM IST · Live on Zoom · Free</p>
+    </div>
+    <a class="btn btn-primary luma-checkout--button" href="https://luma.com/event/evt-FkFMNrUvd58mnUy" data-luma-action="checkout" data-luma-event-id="evt-FkFMNrUvd58mnUy">Register for free</a>
+  </div>
+</section>
+
+</main>
+
+<div class="mobile-bar">
+  <div>
+    <span class="amount">Free webinar</span>
+    <span class="meta">Sun 1st Nov · 11:00 AM IST</span>
+  </div>
+  <a class="btn btn-primary luma-checkout--button" href="https://luma.com/event/evt-FkFMNrUvd58mnUy" data-luma-action="checkout" data-luma-event-id="evt-FkFMNrUvd58mnUy">Register</a>
+</div>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Beyond Vectors AI PVT LTD · <a href="mailto:team@beyondvectors.com">team@beyondvectors.com</a></span>
+    <ul>
+      <li><a href="terms.html">Terms &amp; Conditions</a></li>
+      <li><a href="privacy.html">Privacy Policy</a></li>
+      <li><a href="refund.html">Refund Policy</a></li>
+      <li><a href="cancellation.html">Cancellation Policy</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script id="luma-checkout" src="https://embed.lu.ma/checkout-button.js"></script>
+<script>
+  // Countdown to the webinar
+  (function () {
+    const target = new Date("November 1, 2026 11:00:00 GMT+0530").getTime();
+    const el = {
+      d: document.getElementById("days"), h: document.getElementById("hours"),
+      m: document.getElementById("minutes"), s: document.getElementById("seconds")
+    };
+    function tick() {
+      const left = target - Date.now();
+      if (left < 0) {
+        clearInterval(timer);
+        document.getElementById("countdown-timer").textContent = "Live now";
+        return;
+      }
+      el.d.textContent = Math.floor(left / 86400000);
+      el.h.textContent = Math.floor((left % 86400000) / 3600000);
+      el.m.textContent = Math.floor((left % 3600000) / 60000);
+      el.s.textContent = Math.floor((left % 60000) / 1000);
+    }
+    const timer = setInterval(tick, 1000);
+    tick();
+  })();
+</script>
 
 </body>
 </html>
