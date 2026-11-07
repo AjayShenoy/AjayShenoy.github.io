@@ -273,6 +273,28 @@
     .close p { color: var(--ink-2); margin-top: 6px; }
     .close .actions { display: flex; gap: 12px; flex-wrap: wrap; }
 
+    /* Discount coupon: a light streak travels around the button's border; all instances share one clock */
+    @property --coupon-angle { syntax: "<angle>"; inherits: false; initial-value: 0deg; }
+    .coupon-ring {
+      position: relative; display: inline-flex; align-items: center; justify-content: center;
+      padding: 12px 20px; border-radius: 6px; font-weight: 600; text-decoration: none; line-height: 1.55;
+      background: #f3f5fe; border: 1px solid #d6ddf8;
+    }
+    .facts .coupon.coupon-ring { display: flex; margin-top: 10px; }
+    .coupon-ring::before {
+      content: ""; position: absolute; inset: -1px; border-radius: inherit; padding: 2px; pointer-events: none;
+      background: conic-gradient(from var(--coupon-angle), transparent 0 62%, #9fb2ff 78%, var(--accent) 92%, transparent 100%);
+      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor; mask-composite: exclude;
+    }
+    @media (prefers-reduced-motion: no-preference) {
+      .coupon-ring::before { animation: coupon-spin 3s linear infinite; }
+      @keyframes coupon-spin { to { --coupon-angle: 360deg; } }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .coupon-ring::before { background: var(--accent); opacity: 0.5; }
+    }
+
     footer { border-top: 1px solid var(--line); padding: 28px 0; font-size: 0.85rem; color: var(--ink-3); }
     footer .wrap { display: flex; justify-content: space-between; gap: 12px 24px; flex-wrap: wrap; }
     footer ul { display: flex; gap: 18px; list-style: none; flex-wrap: wrap; }
@@ -354,7 +376,7 @@
       <p class="lead">A 6-week, live online program covering Design → Develop → Deploy for real-world AI agent systems. Taught on weekends by two practitioners.</p>
       <div class="hero-actions">
         <a class="btn btn-primary" href="https://rzp.io/rzp/UaS4txA">Enroll now</a>
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSciM-92801oPbkqSzdWg56rEMRCn95dy44EXvRmyfZcAYoPKQ/viewform?usp=header">Get a discount coupon</a>
+        <a class="coupon-ring" href="https://docs.google.com/forms/d/e/1FAIpQLSciM-92801oPbkqSzdWg56rEMRCn95dy44EXvRmyfZcAYoPKQ/viewform?usp=header">Get a discount coupon</a>
       </div>
       <ul class="key-details" aria-label="Key details">
         <li>Six weeks, twelve live online classes on Saturdays and Sundays; two batches a day, join either.</li>
@@ -633,7 +655,7 @@
       <span class="amount">₹50,000</span>
     </div>
     <a class="btn btn-primary btn-block" href="https://rzp.io/rzp/UaS4txA">Enroll now</a>
-    <a class="coupon" href="https://docs.google.com/forms/d/e/1FAIpQLSciM-92801oPbkqSzdWg56rEMRCn95dy44EXvRmyfZcAYoPKQ/viewform?usp=header">Get a discount coupon</a>
+    <a class="coupon coupon-ring" href="https://docs.google.com/forms/d/e/1FAIpQLSciM-92801oPbkqSzdWg56rEMRCn95dy44EXvRmyfZcAYoPKQ/viewform?usp=header">Get a discount coupon</a>
   </div>
 </aside>
 </div><!-- /layout -->
@@ -647,7 +669,7 @@
     </div>
     <div class="actions">
       <a class="btn btn-primary" href="https://rzp.io/rzp/UaS4txA">Enroll now</a>
-      <a class="btn btn-secondary" href="https://docs.google.com/forms/d/e/1FAIpQLSciM-92801oPbkqSzdWg56rEMRCn95dy44EXvRmyfZcAYoPKQ/viewform?usp=header">Get a discount coupon</a>
+      <a class="btn btn-secondary coupon-ring" href="https://docs.google.com/forms/d/e/1FAIpQLSciM-92801oPbkqSzdWg56rEMRCn95dy44EXvRmyfZcAYoPKQ/viewform?usp=header">Get a discount coupon</a>
     </div>
   </div>
 </section>
@@ -710,6 +732,16 @@
       if (e.key === "ArrowRight") { strip.scrollBy({ left: step(), behavior: "smooth" }); e.preventDefault(); }
       if (e.key === "ArrowLeft") { strip.scrollBy({ left: -step(), behavior: "smooth" }); e.preventDefault(); }
     });
+  })();
+
+  // Keep every coupon ring in phase, including ones shown later on resize
+  (function () {
+    if (!document.getAnimations) return;
+    const sync = () => document.getAnimations()
+      .filter(a => a.animationName === "coupon-spin")
+      .forEach(a => { a.startTime = 0; });
+    sync();
+    addEventListener("resize", () => requestAnimationFrame(sync));
   })();
 </script>
 
