@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thank You | Beyond Vectors</title>
+  <meta name="robots" content="noindex" />
+  <link rel="icon" href="../logo.jpeg" />
+  <link rel="stylesheet" href="checkout.css" />
+</head>
+<body>
+  <header class="top"><div class="in"><a href="../"><img src="../logo.jpeg" alt="Beyond Vectors" /></a></div></header>
+  <main class="wrap">
+    <div class="card">
+      <div class="tick" aria-hidden="true">✓</div>
+      <h1>Thank you!</h1>
+      <p class="sub">Payment received</p>
+      <p>You're enrolled in <strong>Building AI Agents for Enterprise</strong>, December 2026 cohort, starting 12th December.</p>
+      <p>A payment confirmation email is on its way. We'll send the cohort joining details to the same email before the first session.</p>
+      <p id="pid" hidden>Your payment ID: <strong></strong></p>
+      <p>Questions? Email <a href="mailto:ajay@beyondvectors.com">ajay@beyondvectors.com</a>.</p>
+      <a class="btn" href="../">Back to beyondvectors.com</a>
+    </div>
+  </main>
+  <footer class="legal"><a href="../privacy.html">Privacy Policy</a><a href="../terms.html">Terms &amp; Conditions</a><a href="../refund.html">Refund Policy</a></footer>
+  <script>
+    const id = new URLSearchParams(location.search).get('payment');
+    if (id && /^pay_[A-Za-z0-9]+$/.test(id)) { const p = document.getElementById('pid'); p.querySelector('strong').textContent = id; p.hidden = false; }
+  </script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Get a Discount Coupon | Beyond Vectors</title>
+  <meta name="description" content="Get a discount coupon for the Building AI Agents for Enterprise live cohort." />
+  <meta name="robots" content="noindex" />
+  <link rel="icon" href="../logo.jpeg" />
+  <link rel="stylesheet" href="checkout.css" />
+</head>
+<body>
+  <header class="top"><div class="in"><a href="../"><img src="../logo.jpeg" alt="Beyond Vectors" /></a></div></header>
+  <main class="wrap">
+    <a class="back" href="../">← Back to course details</a>
+    <div class="card">
+      <h1>Get a discount coupon</h1>
+      <p class="sub">Building AI Agents for Enterprise · December 2026 cohort. Enter your email and phone to get your discount code.</p>
+      <form id="form" novalidate>
+        <label for="email">Email address <span class="req">*</span></label>
+        <input id="email" type="email" required maxlength="254" autocomplete="email" placeholder="you@example.com" />
+
+        <label for="phone">Phone number <span class="req">*</span></label>
+        <input id="phone" type="tel" required autocomplete="tel" placeholder="+91 98765 43210" />
+        <div class="hint">Include the country code if you're outside India.</div>
+
+        <button type="submit" class="btn" id="btn">Get Discount Code</button>
+      </form>
+      <div class="msg" id="msg" role="alert"></div>
+    </div>
+  </main>
+  <footer class="legal"><a href="../privacy.html">Privacy Policy</a><a href="../terms.html">Terms &amp; Conditions</a><a href="../refund.html">Refund Policy</a></footer>
+  <script>
+    const API = 'https://courses.beyondvectors.com/api/agenticai';
+    const form = document.getElementById('form'), btn = document.getElementById('btn'), msg = document.getElementById('msg');
+    const email = document.getElementById('email'), phone = document.getElementById('phone');
+    try { const saved = JSON.parse(sessionStorage.getItem('aai_contact') || '{}'); email.value = saved.email || ''; phone.value = saved.phone || ''; } catch {}
+
+    form.addEventListener('submit', async e => {
+      e.preventDefault(); msg.textContent = '';
+      const em = email.value.trim(), ph = phone.value.trim();
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)) { msg.textContent = 'Please enter a valid email address.'; email.focus(); return; }
+      if (!/^\+?\d{10,15}$/.test(ph.replace(/[\s()-]/g, ''))) { msg.textContent = 'Please enter a valid phone number (10–15 digits, optional +country code).'; phone.focus(); return; }
+      btn.disabled = true; btn.textContent = 'Getting your code…';
+      // Save the lead, but never hold the buyer up for long if it's slow or fails
+      const ctrl = new AbortController(); const t = setTimeout(() => ctrl.abort(), 5000);
+      try {
+        await fetch(API + '/lead', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email: em, phone: ph }), signal: ctrl.signal });
+      } catch {}
+      clearTimeout(t);
+      try { sessionStorage.setItem('aai_contact', JSON.stringify({ email: em, phone: ph })); } catch {}
+      location.href = 'buy.html?coupon=AGNT4ENT20';
+    });
+    // Coming back with the browser's Back button: re-enable the button
+    addEventListener('pageshow', () => { btn.disabled = false; btn.textContent = 'Get Discount Code'; });
+  </script>
+</body>
+</html>

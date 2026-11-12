@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Enroll | Beyond Vectors</title>
+  <meta name="description" content="Enroll in the Building AI Agents for Enterprise live cohort." />
+  <meta name="robots" content="noindex" />
+  <link rel="icon" href="../logo.jpeg" />
+  <link rel="stylesheet" href="checkout.css" />
+</head>
+<body>
+  <header class="top"><div class="in"><a href="../"><img src="../logo.jpeg" alt="Beyond Vectors" /></a></div></header>
+  <main class="wrap">
+    <a class="back" href="../">← Back to course details</a>
+    <div class="card">
+      <h1>Enroll in the course</h1>
+      <p class="sub">Enter your details. We'll send your cohort joining details to this email.</p>
+      <div class="price">
+        <span class="what"><b>Building AI Agents for Enterprise</b>December 2026 cohort · starts 12th December</span>
+        <span class="amt"><s id="was" hidden>₹50,000</s><strong id="amt">₹50,000</strong></span>
+      </div>
+      <form id="form" novalidate>
+        <label for="coupon">Coupon code <span class="opt">(optional)</span></label>
+        <div class="coupon-row">
+          <input id="coupon" type="text" maxlength="40" autocomplete="off" placeholder="Enter coupon" />
+          <button type="button" class="btn" id="apply">Apply</button>
+        </div>
+        <div id="couponMsg"></div>
+
+        <label for="name" class="first-detail">Full name <span class="req">*</span></label>
+        <input id="name" type="text" required minlength="2" maxlength="100" autocomplete="name" placeholder="Your full name" />
+
+        <label for="email">Email address <span class="req">*</span></label>
+        <input id="email" type="email" required maxlength="254" autocomplete="email" placeholder="you@example.com" />
+
+        <label for="phone">Phone <span class="req">*</span></label>
+        <input id="phone" type="tel" required autocomplete="tel" placeholder="+91 98765 43210" />
+        <div class="hint">Include the country code if you're outside India.</div>
+
+        <button type="submit" class="btn" id="btn">Buy Now</button>
+      </form>
+      <div class="msg" id="msg" role="alert"></div>
+      <p class="secure">Payments are processed securely by Razorpay.</p>
+    </div>
+  </main>
+  <footer class="legal"><a href="../privacy.html">Privacy Policy</a><a href="../terms.html">Terms &amp; Conditions</a><a href="../refund.html">Refund Policy</a></footer>
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  <script>
+    const API = 'https://courses.beyondvectors.com/api/agenticai';
+    // Display only: the server works out the real price from the coupon
+    const FULL = 50000, DEFAULT_CODE = 'AGNT4ENT20', DEFAULT_PCT = 20;
+    const $ = id => document.getElementById(id);
+    const form = $('form'), btn = $('btn'), msg = $('msg'), amt = $('amt'), was = $('was'), couponMsg = $('couponMsg'), applyBtn = $('apply');
+    const f = { name: $('name'), email: $('email'), phone: $('phone'), coupon: $('coupon') };
+    const inr = n => '₹' + Number(n).toLocaleString('en-IN');
+
+    try { const c = JSON.parse(sessionStorage.getItem('aai_contact') || '{}'); f.email.value = c.email || ''; f.phone.value = c.phone || ''; } catch {}
+    f.name.focus();
+
+    const setCouponMsg = (t, ok) => { couponMsg.textContent = t; couponMsg.className = t ? (ok ? 'ok' : 'err') : ''; };
+    const showPrice = (finalInr, pct) => {
+      if (pct) { was.hidden = false; amt.textContent = inr(finalInr); setCouponMsg(pct + '% off applied. You pay ' + inr(finalInr) + '.', true); }
+      else { was.hidden = true; amt.textContent = inr(FULL); }
+    };
+
+    async function applyCoupon() {
+      const code = f.coupon.value.replace(/\s+/g, '').toUpperCase();
+      if (!code) { showPrice(); setCouponMsg('', true); return; }
+      if (code === DEFAULT_CODE) { showPrice(FULL * (100 - DEFAULT_PCT) / 100, DEFAULT_PCT); return; }
+      applyBtn.disabled = true; setCouponMsg('Checking…', true);
+      try {
+        const r = await fetch(API + '/coupon', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ code }) });
+        const d = await r.json();
+        if (!r.ok) { showPrice(); setCouponMsg(d.message || 'This coupon code is not valid.', false); }
+        else showPrice(d.finalInr, d.percentOff);
+      } catch { setCouponMsg('Could not check the coupon. Please try again.', false); }
+      applyBtn.disabled = false;
+    }
+    applyBtn.addEventListener('click', applyCoupon);
+    f.coupon.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); applyCoupon(); } });
+    f.coupon.addEventListener('input', () => { showPrice(); setCouponMsg(f.coupon.value.trim() ? 'Press Apply to use this code.' : '', true); });
+
+    // "Get a discount coupon" arrives with ?coupon=AGNT4ENT20; "Enroll now" arrives without one (full price, blank field)
+    const linked = (new URLSearchParams(location.search).get('coupon') || '').replace(/[^A-Za-z0-9]/g, '').slice(0, 40);
+    if (linked) { f.coupon.value = linked.toUpperCase(); applyCoupon(); }
+
+    const setBusy = (busy, label) => { btn.disabled = busy; btn.textContent = label || 'Buy Now'; };
+    const fail = t => { msg.textContent = t; setBusy(false); };
+
+    function validate() {
+      if (f.name.value.trim().length < 2) return 'Please enter your full name.';
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.email.value.trim())) return 'Please enter a valid email address.';
+      if (!/^\+?\d{10,15}$/.test(f.phone.value.replace(/[\s()-]/g, ''))) return 'Please enter a valid phone number (10–15 digits, optional +country code).';
+      return '';
+    }
+
+    form.addEventListener('submit', async e => {
+      e.preventDefault(); msg.textContent = '';
+      const err = validate(); if (err) return fail(err);
+      setBusy(true, 'Starting payment…');
+
+      let order;
+      try {
+        const r = await fetch(API + '/order', { method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name: f.name.value, email: f.email.value, phone: f.phone.value, coupon: f.coupon.value }) });
+        order = await r.json();
+        if (!r.ok) {
+          if (order.couponError) { showPrice(); setCouponMsg(order.message, false); setBusy(false); return; }
+          return fail(order.message || 'Could not start the payment. Please try again.');
+        }
+      } catch { return fail('Something went wrong. Please try again.'); }
+
+      if (typeof Razorpay === 'undefined') return fail('The payment window could not load. Please disable any ad blocker and try again.');
+
+      const rzp = new Razorpay({
+        key: order.keyId, amount: order.amount, currency: order.currency, order_id: order.orderId,
+        name: 'Beyond Vectors', description: 'Building AI Agents for Enterprise',
+        prefill: { name: order.buyer.name, email: order.buyer.email, contact: order.buyer.phone },
+        // Copied onto the payment (order notes aren't) for the payments Apps Script, which reads notes.name
+        notes: { name: order.buyer.name, course: 'AGENTICAI', coupon: order.buyer.coupon || '', source: 'beyondvectors.com' },
+        theme: { color: '#2d4fd8' },
+        handler: async resp => {
+          setBusy(true, 'Confirming payment…');
+          try {
+            const r = await fetch(API + '/verify', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(resp) });
+            const d = await r.json();
+            if (!r.ok) return fail((d.message || 'Payment could not be verified.') + ' If money was deducted, please email ajay@beyondvectors.com with payment ID ' + resp.razorpay_payment_id + '.');
+            try { sessionStorage.removeItem('aai_contact'); } catch {}
+            location.href = 'thank-you.html?payment=' + encodeURIComponent(resp.razorpay_payment_id);
+          } catch { location.href = 'thank-you.html?payment=' + encodeURIComponent(resp.razorpay_payment_id); }
+        },
+        modal: { ondismiss: () => setBusy(false) }
+      });
+      rzp.on('payment.failed', r => fail('Payment failed: ' + ((r.error && r.error.description) || 'please try again.')));
+      rzp.open();
+    });
+  </script>
+</body>
+</html>
