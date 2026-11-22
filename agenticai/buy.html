@@ -38,7 +38,7 @@
         <input id="phone" type="tel" required autocomplete="tel" placeholder="+91 98765 43210" />
         <div class="hint">Include the country code if you're outside India.</div>
 
-        <label class="agree" id="agreeRow" hidden><input type="checkbox" id="agree" /> <span>I agree to pay the full course fee agreed with Beyond Vectors, in instalments of ₹10,000 each.</span></label>
+        <label class="agree" id="agreeRow" hidden><input type="checkbox" id="agree" /> <span>I agree to pay the full course fee in instalments, as agreed with Beyond Vectors.</span></label>
 
         <button type="submit" class="btn" id="btn">Buy Now</button>
       </form>
@@ -51,7 +51,7 @@
   <script>
     const API = 'https://courses.beyondvectors.com/api/agenticai';
     // Display only: the server works out the real price from the coupon
-    const FULL = 50000, DEFAULT_CODE = 'AGNT4ENT20', DEFAULT_PCT = 20, INST_CODE = 'AGNT4ENTINST', INST_INR = 10000;
+    const FULL = 50000, DEFAULT_CODE = 'AGNT4ENT20', DEFAULT_PCT = 20;
     const $ = id => document.getElementById(id);
     const form = $('form'), btn = $('btn'), msg = $('msg'), amt = $('amt'), was = $('was'), couponMsg = $('couponMsg'), applyBtn = $('apply');
     const f = { name: $('name'), email: $('email'), phone: $('phone'), coupon: $('coupon') };
@@ -75,7 +75,6 @@
       const code = f.coupon.value.replace(/\s+/g, '').toUpperCase();
       if (!code) { showPrice(); setCouponMsg('', true); return; }
       if (code === DEFAULT_CODE) { showPrice(FULL * (100 - DEFAULT_PCT) / 100, DEFAULT_PCT); return; }
-      if (code === INST_CODE) { showPrice(INST_INR, 0, true); return; }
       applyBtn.disabled = true; setCouponMsg('Checking…', true);
       try {
         const r = await fetch(API + '/coupon', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ code }) });
