@@ -31,16 +31,19 @@ main .sub { color:var(--muted); margin-bottom:28px; }
 .imgs img { max-width:100%; display:block; margin-top:4px; border:1px solid var(--border); border-radius:8px; }
 
 aside { position:sticky; top:84px; }
-.course-block { background:linear-gradient(135deg,#0f172a 0%,#1e293b 100%); border-radius:var(--radius); padding:28px; color:white; }
-.course-block .course-label { display:inline-block; background:rgba(209,59,86,0.2); color:#f87171; border:1px solid rgba(209,59,86,0.4); border-radius:999px; font-size:0.75rem; font-weight:600; padding:3px 12px; letter-spacing:0.05em; text-transform:uppercase; margin-bottom:16px; }
-.course-block h3 { font-size:1.35rem; font-weight:800; margin-bottom:12px; line-height:1.25; }
-.course-block h3 span { color:#f87171; }
-.course-block .course-meta { display:flex; gap:16px; flex-wrap:wrap; margin-bottom:20px; }
-.course-block .meta-item { font-size:0.8rem; color:#94a3b8; }
-.course-block .meta-item strong { color:white; display:block; font-size:0.95rem; }
-.course-block p { color:#94a3b8; font-size:0.9rem; margin-bottom:24px; }
-.btn-blue { background:#1a73e8; color:white; padding:12px 28px; border-radius:10px; font-size:0.95rem; font-weight:600; text-decoration:none; display:inline-block; transition:opacity 0.2s; }
-.btn-blue:hover { opacity:0.88; }
+.facts { --ink:#15213d; --ink-3:#5b6a86; --line:#d9dee8; --line-soft:#e9edf3; --accent:#2d4fd8; --accent-ink:#1f3cb0; background:#fff; border:1px solid var(--line); border-radius:10px; padding:20px; color:var(--ink); }
+.facts h2 { font-size:1rem; font-weight:600; color:var(--ink-3); margin-bottom:14px; }
+.facts dl { display:grid; grid-template-columns:1fr; gap:2px; font-size:0.95rem; }
+.facts dt { color:var(--ink-3); font-size:0.85rem; }
+.facts dd { font-weight:600; margin:0 0 8px; }
+.facts dd:last-child { margin-bottom:0; }
+.facts dd.start { font-size:1.3rem; font-weight:800; color:var(--accent-ink); letter-spacing:-0.01em; line-height:1.2; background:#eef1fd; border:1px solid #d6ddf8; border-left:4px solid var(--accent); border-radius:8px; padding:10px 14px; margin-top:4px; }
+.facts .note { font-size:0.85rem; color:var(--ink-3); margin-top:12px; }
+.facts .price { border-top:1px solid var(--line-soft); margin-top:14px; padding-top:14px; }
+.facts .price .amount { font-size:1.9rem; font-weight:800; letter-spacing:-0.02em; display:block; line-height:1.1; }
+.facts .btn { display:flex; align-items:center; justify-content:center; width:100%; margin-top:14px; font-weight:600; font-size:1rem; padding:12px 20px; border-radius:6px; text-decoration:none; background:var(--accent); color:#fff; transition:background-color 120ms ease-out; }
+.facts .btn:hover { background:var(--accent-ink); color:#fff; }
+.facts .coupon { display:block; text-align:center; margin-top:12px; font-size:0.9rem; color:var(--accent); font-weight:500; }
 
 footer { text-align:center; padding:24px; font-size:0.8rem; color:var(--muted); border-top:1px solid var(--border); }
 footer a { color:inherit; }
@@ -1902,19 +1905,184 @@ footer a { color:inherit; }
 <div><b>Post</b><br><img loading="lazy" decoding="async" src="screenshots_testimonials/post_328.jpg" alt="post screenshot"></div>
 <div><b>Profile</b><br><img loading="lazy" decoding="async" src="screenshots_testimonials/profile_328.jpg" alt="profile screenshot"></div>
 </div></div>
+<div class="card" id="row-329"><h2>231. Mohinee Kumari</h2>
+<p><a href="https://www.linkedin.com/posts/mohinee-kumari_i-recently-completed-the-building-ai-agents-share-7510344611492438016-Ro-S/" target="_blank">Post Link</a>
+</p>
+<p><a href="https://www.linkedin.com/in/mohinee-kumari/" target="_blank">Profile Link</a></p>
+<div class="imgs">
+<div><b>Post</b><br><img loading="lazy" decoding="async" src="screenshots_testimonials/post_329.jpg" alt="post screenshot"></div>
+<div><b>Profile</b><br><img loading="lazy" decoding="async" src="screenshots_testimonials/profile_329.jpg" alt="profile screenshot"></div>
+</div></div>
+<div class="card" id="row-330"><h2>232. Likhith V Gowda</h2>
+<p><a href="https://www.linkedin.com/posts/likhithgowdav76_agenticai-aiagents-rag-ugcPost-7510740807167959040-fLDU/" target="_blank">Post Link</a>
+</p>
+<p><a href="https://www.linkedin.com/in/likhithgowdav76/" target="_blank">Profile Link</a></p>
+<div class="imgs">
+<div><b>Post</b><br><img loading="lazy" decoding="async" src="screenshots_testimonials/post_330.jpg" alt="post screenshot"></div>
+<div><b>Profile</b><br><img loading="lazy" decoding="async" src="screenshots_testimonials/profile_330.jpg" alt="profile screenshot"></div>
+</div></div>
+<div class="card" id="row-331"><h2>233. Anusuya Ganguly</h2>
+<p><a href="https://www.linkedin.com/feed/update/urn:li:activity:7510951143632699396/" target="_blank">Post Link</a>
+</p>
+<p><a href="https://www.linkedin.com/in/anusuya-ganguly-8a249a138/" target="_blank">Profile Link</a></p>
+<div class="imgs">
+<div><b>Post</b><br><img loading="lazy" decoding="async" src="screenshots_testimonials/post_331.jpg" alt="post screenshot"></div>
+<div><b>Profile</b><br><img loading="lazy" decoding="async" src="screenshots_testimonials/profile_331.jpg" alt="profile screenshot"></div>
+</div></div>
+<div class="card" id="row-332"><h2>234. Yogesh Kumar Purohit</h2>
+<p><a href="https://www.linkedin.com/posts/yogesh-kumar-purohit-9261a81a_continuous-introspection-continuous-learning-share-7502582907304284160-hqYA/" target="_blank">Post Link</a>
+</p>
+<p><a href="https://www.linkedin.com/in/yogesh-kumar-purohit-9261a81a/" target="_blank">Profile Link</a></p>
+<div class="imgs">
+<div><b>Post</b><br><img loading="lazy" decoding="async" src="screenshots_testimonials/post_332.jpg" alt="post screenshot"></div>
+<div><b>Profile</b><br><img loading="lazy" decoding="async" src="screenshots_testimonials/profile_332.jpg" alt="profile screenshot"></div>
+</div></div>
+<div class="card" id="row-333"><h2>235. Kritisha Panda</h2>
+<p><a href="https://www.linkedin.com/posts/kritisha-panda_beyondvectorsai-ailearning-share-7504748792848519169-qVkD/" target="_blank">Post Link</a>
+</p>
+<p><a href="https://www.linkedin.com/in/kritisha-panda/" target="_blank">Profile Link</a></p>
+<div class="imgs">
+<div><b>Post</b><br><img loading="lazy" decoding="async" src="screenshots_testimonials/post_333.jpg" alt="post screenshot"></div>
+<div><b>Profile</b><br><img loading="lazy" decoding="async" src="screenshots_testimonials/profile_333.jpg" alt="profile screenshot"></div>
+</div></div>
+<div class="card" id="row-335"><h2>236. Harshit Raj</h2>
+<p><a href="https://www.linkedin.com/feed/update/urn:li:activity:7432899830609489920/" target="_blank">Post Link</a>
+</p>
+<p><a href="https://www.linkedin.com/in/harshit71/" target="_blank">Profile Link</a></p>
+<div class="imgs">
+<div><b>Post</b><br><img loading="lazy" decoding="async" src="screenshots_testimonials/post_335.jpg" alt="post screenshot"></div>
+<div><b>Profile</b><br><img loading="lazy" decoding="async" src="screenshots_testimonials/profile_335.jpg" alt="profile screenshot"></div>
+</div></div>
+<div class="card" id="row-336"><h2>237. Manohar Karanam</h2>
+<p><a href="https://www.linkedin.com/feed/update/urn:li:activity:7512575654245343232/" target="_blank">Post Link</a>
+</p>
+<p><a href="https://www.linkedin.com/in/manohar-karanam/" target="_blank">Profile Link</a></p>
+<div class="imgs">
+<div><b>Post</b><br><img loading="lazy" decoding="async" src="screenshots_testimonials/post_336.jpg" alt="post screenshot"></div>
+<div><b>Profile</b><br><img loading="lazy" decoding="async" src="screenshots_testimonials/profile_336.jpg" alt="profile screenshot"></div>
+</div></div>
+<div class="card" id="row-337"><h2>238. Aditya Baskaran</h2>
+<p><a href="https://www.linkedin.com/posts/neone_ive-spent-a-lot-of-time-thinking-about-how-share-7512765468311568384-W5J8/" target="_blank">Post Link</a>
+</p>
+<p><a href="https://www.linkedin.com/in/neone/" target="_blank">Profile Link</a></p>
+<div class="imgs">
+<div><b>Post</b><br><img loading="lazy" decoding="async" src="screenshots_testimonials/post_337.jpg" alt="post screenshot"></div>
+<div><b>Profile</b><br><img loading="lazy" decoding="async" src="screenshots_testimonials/profile_337.jpg" alt="profile screenshot"></div>
+</div></div>
+<div class="card" id="row-338"><h2>239. Basha Shaik</h2>
+<p><a href="https://www.linkedin.com/posts/nagurbasha-shaik_beyondvectors-artificialintelligence-generativeai-share-7513970132268838913-E3hO/" target="_blank">Post Link</a>
+</p>
+<p><a href="https://www.linkedin.com/in/nagurbasha-shaik/" target="_blank">Profile Link</a></p>
+<div class="imgs">
+<div><b>Post</b><br><img loading="lazy" decoding="async" src="screenshots_testimonials/post_338.jpg" alt="post screenshot"></div>
+<div><b>Profile</b><br><img loading="lazy" decoding="async" src="screenshots_testimonials/profile_338.jpg" alt="profile screenshot"></div>
+</div></div>
+<div class="card" id="row-339"><h2>240. Keshav Sirohi</h2>
+<p><a href="https://www.linkedin.com/posts/keshav-sirohi_i-already-had-some-familiarity-with-ai-agents-share-7514157044183044096-KISZ/" target="_blank">Post Link</a>
+</p>
+<p><a href="https://www.linkedin.com/in/keshav-sirohi/" target="_blank">Profile Link</a></p>
+<div class="imgs">
+<div><b>Post</b><br><img loading="lazy" decoding="async" src="screenshots_testimonials/post_339.jpg" alt="post screenshot"></div>
+<div><b>Profile</b><br><img loading="lazy" decoding="async" src="screenshots_testimonials/profile_339.jpg" alt="profile screenshot"></div>
+</div></div>
+<div class="card" id="row-341"><h2>241. Ritwik Sahoo</h2>
+<p><a href="https://www.linkedin.com/posts/ritwiksahoo_with-the-ai-bandwagon-going-in-full-swing-share-7514166278539059200-WA0e/" target="_blank">Post Link</a>
+</p>
+<p><a href="https://www.linkedin.com/in/ritwiksahoo/" target="_blank">Profile Link</a></p>
+<div class="imgs">
+<div><b>Post</b><br><img loading="lazy" decoding="async" src="screenshots_testimonials/post_341.jpg" alt="post screenshot"></div>
+<div><b>Profile</b><br><img loading="lazy" decoding="async" src="screenshots_testimonials/profile_341.jpg" alt="profile screenshot"></div>
+</div></div>
+<div class="card" id="row-342"><h2>242. Sambit Mishra</h2>
+<p><a href="https://www.linkedin.com/posts/sambitmishra5790_generativeai-aiagents-productmanagement-share-7514324052631519232-hOk8/" target="_blank">Post Link</a>
+</p>
+<p><a href="https://www.linkedin.com/in/sambitmishra5790/" target="_blank">Profile Link</a></p>
+<div class="imgs">
+<div><b>Post</b><br><img loading="lazy" decoding="async" src="screenshots_testimonials/post_342.jpg" alt="post screenshot"></div>
+<div><b>Profile</b><br><img loading="lazy" decoding="async" src="screenshots_testimonials/profile_342.jpg" alt="profile screenshot"></div>
+</div></div>
+<div class="card" id="row-343"><h2>243. Shivam Chauhan</h2>
+<p><a href="https://www.linkedin.com/posts/shivamchauhan-connect_i-recently-completed-an-ai-course-from-wwwbeyondvectorscom-share-7515050944821350400-wxRy/" target="_blank">Post Link</a>
+</p>
+<p><a href="https://www.linkedin.com/in/shivamchauhan-connect/" target="_blank">Profile Link</a></p>
+<div class="imgs">
+<div><b>Post</b><br><img loading="lazy" decoding="async" src="screenshots_testimonials/post_343.jpg" alt="post screenshot"></div>
+<div><b>Profile</b><br><img loading="lazy" decoding="async" src="screenshots_testimonials/profile_343.jpg" alt="profile screenshot"></div>
+</div></div>
+<div class="card" id="row-344"><h2>244. Swapna Reddy</h2>
+<p><a href="https://www.linkedin.com/feed/update/urn:li:share:7515289600236486656/" target="_blank">Post Link</a>
+</p>
+<p><a href="https://www.linkedin.com/in/swapna-reddy-69775938/" target="_blank">Profile Link</a></p>
+<div class="imgs">
+<div><b>Post</b><br><img loading="lazy" decoding="async" src="screenshots_testimonials/post_344.jpg" alt="post screenshot"></div>
+<div><b>Profile</b><br><img loading="lazy" decoding="async" src="screenshots_testimonials/profile_344.jpg" alt="profile screenshot"></div>
+</div></div>
+<div class="card" id="row-345"><h2>245. Prachi Gupta</h2>
+<p><a href="https://www.linkedin.com/posts/prachigupta307_genai-aiagents-enterpriseai-share-7515633969074397185-iqBO/" target="_blank">Post Link</a>
+</p>
+<p><a href="https://www.linkedin.com/in/prachigupta307/" target="_blank">Profile Link</a></p>
+<div class="imgs">
+<div><b>Post</b><br><img loading="lazy" decoding="async" src="screenshots_testimonials/post_345.jpg" alt="post screenshot"></div>
+<div><b>Profile</b><br><img loading="lazy" decoding="async" src="screenshots_testimonials/profile_345.jpg" alt="profile screenshot"></div>
+</div></div>
+<div class="card" id="row-346"><h2>246. Rohan Paliwal</h2>
+<p><a href="https://www.linkedin.com/feed/update/urn:li:activity:7516339134387523584/" target="_blank">Post Link</a>
+</p>
+<p><a href="https://www.linkedin.com/in/rohan-paliwal1212/" target="_blank">Profile Link</a></p>
+<div class="imgs">
+<div><b>Post</b><br><img loading="lazy" decoding="async" src="screenshots_testimonials/post_346.jpg" alt="post screenshot"></div>
+<div><b>Profile</b><br><img loading="lazy" decoding="async" src="screenshots_testimonials/profile_346.jpg" alt="profile screenshot"></div>
+</div></div>
+<div class="card" id="row-347"><h2>247. Deep Agarwal</h2>
+<p><a href="https://www.linkedin.com/posts/ag-deep_building-share-7517552129935495169-BDbx/" target="_blank">Post Link</a>
+</p>
+<p><a href="https://www.linkedin.com/in/ag-deep/" target="_blank">Profile Link</a></p>
+<div class="imgs">
+<div><b>Post</b><br><img loading="lazy" decoding="async" src="screenshots_testimonials/post_347.jpg" alt="post screenshot"></div>
+<div><b>Profile</b><br><img loading="lazy" decoding="async" src="screenshots_testimonials/profile_347.jpg" alt="profile screenshot"></div>
+</div></div>
+<div class="card" id="row-348"><h2>248. Vinayak Killedar</h2>
+<p><a href="https://www.linkedin.com/posts/vinayak-killedar-58087453_attended-building-ai-agents-for-enterprise-share-7529912786123128832-jymV/" target="_blank">Post Link</a>
+</p>
+<p><a href="https://www.linkedin.com/in/vinayak-killedar-58087453/" target="_blank">Profile Link</a></p>
+<div class="imgs">
+<div><b>Post</b><br><img loading="lazy" decoding="async" src="screenshots_testimonials/post_348.jpg" alt="post screenshot"></div>
+<div><b>Profile</b><br><img loading="lazy" decoding="async" src="screenshots_testimonials/profile_348.jpg" alt="profile screenshot"></div>
+</div></div>
+<div class="card" id="row-349"><h2>249. yuvaraj Umapathi</h2>
+<p><a href="https://www.linkedin.com/posts/yuvaraj-umapathi_agenticai-generativeai-aiengineering-activity-7530410838168543232-aA_N" target="_blank">Post Link</a>
+</p>
+<p><a href="https://www.linkedin.com/in/yuvaraj-umapathi/" target="_blank">Profile Link</a></p>
+<div class="imgs">
+<div><b>Post</b><br><img loading="lazy" decoding="async" src="screenshots_testimonials/post_349.jpg" alt="post screenshot"></div>
+<div><b>Profile</b><br><img loading="lazy" decoding="async" src="screenshots_testimonials/profile_349.jpg" alt="profile screenshot"></div>
+</div></div>
+<div class="card" id="row-350"><h2>250. Debashish Swar</h2>
+<p><a href="https://www.linkedin.com/feed/update/urn:li:activity:7530463068837826560/" target="_blank">Post Link</a>
+</p>
+<p><a href="https://www.linkedin.com/in/debashish-swar/" target="_blank">Profile Link</a></p>
+<div class="imgs">
+<div><b>Post</b><br><img loading="lazy" decoding="async" src="screenshots_testimonials/post_350.jpg" alt="post screenshot"></div>
+<div><b>Profile</b><br><img loading="lazy" decoding="async" src="screenshots_testimonials/profile_350.jpg" alt="profile screenshot"></div>
+</div></div>
 </main>
 
 <aside>
-  <div class="course-block">
-    <div class="course-label">Now Enrolling</div>
-    <h3>Building <span>AI Agents</span> for Enterprise</h3>
-    <div class="course-meta">
-      <div class="meta-item"><strong>6 weeks</strong>Live online</div>
-      <div class="meta-item"><strong>Starts 10th October 2026</strong>Next cohort</div>
-      <div class="meta-item"><strong>&#8377;50,000</strong>Per seat</div>
-    </div>
-    <p>Design, develop, and deploy production-grade AI agent systems. Covers architecture patterns, RAG, tool use, multi-agent workflows, and evaluation - with live sessions and hands-on projects.</p>
-    <a href="https://beyondvectors.com" class="btn-blue">Learn More &rarr;</a>
+  <div class="facts">
+    <h2>Building AI Agents for Enterprise · December 2026 cohort</h2>
+    <dl>
+      <dt>Starts</dt><dd class="start">12th December, 2026</dd>
+      <dt>Duration</dt><dd>6 weeks</dd>
+      <dt>Ends</dt><dd>17th January, 2027</dd>
+      <dt>Days</dt><dd>Saturdays &amp; Sundays</dd>
+      <dt>Morning batch</dt><dd>8:00 AM – 10:00 AM IST</dd>
+      <dt>Evening batch</dt><dd>8:00 PM – 10:00 PM IST</dd>
+      <dt>Format</dt><dd>Live online classes</dd>
+    </dl>
+    <p class="note">You'll receive invites to both batches: choose which one to join each day.</p>
+    <div class="price"><span class="amount">₹50,000</span></div>
+    <a class="btn" href="agenticai/buy.html">Enroll now</a>
+    <a class="coupon" href="agenticai/discount.html">Get a discount coupon</a>
   </div>
 </aside>
 </div>
