@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex" />
+  <title>Share on LinkedIn | Beyond Vectors</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <!--
+    Pre-filled LinkedIn post, used by tasks_handover/email_campaigns/share_post.
+    Link format: /share/post.html#t=<base64url(UTF-8 post text)>
+    The fragment never reaches a server. Phones: Web Share API -> Android/iOS share sheet ->
+    LinkedIn app composer (linkedin.com/feed/?shareActive links lose the text in the app).
+    Laptops: LinkedIn's shareActive URL.
+  -->
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --red: #D13B56; --blue: #0a66c2; --bg: #f8fafc; --dark: #0f172a; --muted: #64748b; --border: #e2e8f0; }
+    body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--dark); line-height: 1.6; }
+    .wrap { max-width: 640px; margin: 0 auto; padding: 40px 20px 56px; }
+    .eyebrow { font-size: 13px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--red); margin-bottom: 8px; }
+    h1 { font-size: 26px; font-weight: 700; line-height: 1.25; letter-spacing: -.02em; margin-bottom: 8px; }
+    .sub { color: var(--muted); margin-bottom: 20px; font-size: 15px; }
+    textarea { width: 100%; min-height: 300px; padding: 16px; font: 15px/1.6 'Inter', sans-serif; color: var(--dark);
+               background: #fff; border: 1px solid var(--border); border-radius: 12px; resize: vertical; }
+    textarea:focus { outline: 2px solid var(--blue); border-color: transparent; }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 16px; }
+    button { font: 600 15px 'Inter', sans-serif; padding: 13px 22px; border-radius: 8px; cursor: pointer; border: 1px solid var(--border); background: #fff; color: var(--dark); }
+    button.primary { background: var(--blue); border-color: var(--blue); color: #fff; flex: 1 1 220px; }
+    button:focus-visible { outline: 2px solid var(--dark); outline-offset: 2px; }
+    .status { margin-top: 14px; font-size: 14px; color: var(--muted); min-height: 1.4em; }
+    .steps { margin-top: 20px; font-size: 14px; color: var(--muted); }
+    .steps li { margin: 4px 0 4px 18px; }
+    .empty { display: none; }
+    footer { margin-top: 36px; font-size: 13px; color: var(--muted); }
+    footer a { color: var(--muted); }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <div class="eyebrow">Beyond Vectors</div>
+    <h1 id="title">Your LinkedIn post is ready</h1>
+    <p class="sub" id="lead">Edit anything you like, then share it.</p>
+
+    <div id="has-post">
+      <label for="post" class="sub" style="display:block;margin-bottom:6px;">Post text</label>
+      <textarea id="post" spellcheck="true"></textarea>
+      <div class="actions">
+        <button class="primary" id="share">Share on LinkedIn</button>
+        <button id="copy">Copy text</button>
+      </div>
+      <p class="status" id="status" role="status" aria-live="polite"></p>
+      <ol class="steps" id="mobile-steps" hidden>
+        <li>Tap <strong>Share on LinkedIn</strong> and pick <strong>LinkedIn</strong> from the list.</li>
+        <li>If the post box opens empty, long-press it and paste. The text is already copied.</li>
+      </ol>
+    </div>
+    <p class="sub empty" id="no-post">This share link looks incomplete. Please open it again from the email.</p>
+
+    <footer><a href="https://beyondvectors.com">beyondvectors.com</a></footer>
+  </main>
+
+  <script>
+    (function () {
+      var box = document.getElementById('post');
+      var statusEl = document.getElementById('status');
+      var isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent) ||
+                     (navigator.maxTouchPoints > 1 && /Macintosh/.test(navigator.userAgent));
+
+      function decode(b64) {
+        b64 = b64.replace(/-/g, '+').replace(/_/g, '/');
+        while (b64.length % 4) b64 += '=';
+        var bin = atob(b64), bytes = new Uint8Array(bin.length);
+        for (var i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+        return new TextDecoder().decode(bytes);
+      }
+
+      var text = '';
+      try {
+        var m = location.hash.match(/[#&]t=([A-Za-z0-9_-]+)/);
+        if (m) text = decode(m[1]);
+      } catch (e) { text = ''; }
+      if (!text) {
+        document.getElementById('has-post').style.display = 'none';
+        document.getElementById('title').textContent = 'This share link is incomplete';
+        document.getElementById('lead').style.display = 'none';
+        document.getElementById('no-post').style.display = 'block';
+        return;
+      }
+      box.value = text;
+      if (isMobile) document.getElementById('mobile-steps').hidden = false;
+
+      function say(msg) { statusEl.textContent = msg; }
+
+      function copy(t) {
+        if (navigator.clipboard && window.isSecureContext) {
+          return navigator.clipboard.writeText(t).then(function () { return true; }, function () { return fallbackCopy(t); });
+        }
+        return Promise.resolve(fallbackCopy(t));
+      }
+      function fallbackCopy(t) {
+        box.focus(); box.select();
+        try { return document.execCommand('copy'); } catch (e) { return false; }
+      }
+
+      document.getElementById('copy').addEventListener('click', function () {
+        copy(box.value).then(function (ok) { say(ok ? 'Copied. Paste it into a new LinkedIn post.' : 'Select the text above and copy it.'); });
+      });
+
+      document.getElementById('share').addEventListener('click', function () {
+        var t = box.value;
+        if (isMobile && navigator.share) {
+          // Start the copy and the share in the same tap: some share targets drop the text.
+          copy(t);
+          navigator.share({ text: t }).then(function () {
+            say('Shared. Thank you!');
+          }, function (err) {
+            if (err && err.name === 'AbortError') { say('Share cancelled. The text is copied if you want to paste it.'); return; }
+            openLinkedIn(t);
+          });
+          return;
+        }
+        openLinkedIn(t);
+      });
+
+      function openLinkedIn(t) {
+        if (isMobile) {
+          copy(t).then(function () {
+            say('Copied. In LinkedIn, tap "Post" (or "Start a post") and paste.');
+            location.href = 'https://www.linkedin.com/feed/?shareActive=true';
+          });
+        } else {
+          window.open('https://www.linkedin.com/feed/?shareActive=true&text=' + encodeURIComponent(t), '_blank', 'noopener');
+          say('LinkedIn opened in a new tab with your post filled in.');
+        }
+      }
+    })();
+  </script>
+</body>
+</html>
